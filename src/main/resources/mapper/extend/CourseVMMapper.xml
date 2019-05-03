@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysc.apps.online.dao.extend.CourseVMMapper">
+ 
+ <!-- 定义结果集 -->
+	<resultMap id="CourseVMResultMap" type="com.ysc.apps.online.bean.extend.CourseVM">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="description" property="description" />
+		<result column="start_time" property="startTime" />
+		
+		<collection column="id" property="chapter" javaType="ArrayList"
+			ofType="com.ysc.apps.online.bean.CourseChapter" select="selectChapterByCourseId">
+		</collection>
+		
+	</resultMap>
+	
+	<resultMap id="CourseChapterMap" type="com.ysc.apps.online.bean.CourseChapter">
+		<result column="course_id" property="courseId" />
+	</resultMap>
+	
+	
+
+	<!-- 通过题目id查询属于该题目的选项信息 -->
+
+	<select id="selectChapterByCourseId" parameterType="long"
+		resultMap="CourseChapterMap">
+		select * from course_chapter where course_id=#{id}
+	</select>
+	
+	
+    <select id="selectAll" resultMap="CourseVMResultMap">
+    select *  from course
+    </select>
+    
+    <select id="selectById" resultMap="CourseVMResultMap">
+      select *  from course where id=#{id}
+    </select>
+    
+    <select id="query" resultMap="CourseVMResultMap">
+      select *  from course  where name like "%"#{name}"%"
+    </select>
+
+  
+</mapper>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/vector.js"></script>
+
+</head>
+<body>
+
+
+<div id="container">
+	<div id="output">
+		<div class="containerT">
+		
+		
+		<h1>无知在线学习平台</h1>
+			<h1>用户登录</h1>
+			<form action="login" id="myform" class="form">
+				<input id="username" type="text" placeholder="用户名">
+				<input id="password" type="password" placeholder="密码">
+				<button onclick="sub()" type="button" id="entry_btn">登录</button>
+				<div id="prompt" class="prompt"></div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	function sub(){								//登录函数
+		var username = $("#username").val();
+		var password = $("#password").val();
+		if (username == "" || password == "") {
+			alert('用户名或密码不能为空');
+			return;
+		}
+		$.ajax({
+			type:"post",
+			url:"/user/login",
+			data: {
+				"username": username,
+				"password": password
+			},
+			success:function (data) {
+				if(data == "success"){
+					window.location.href = "/dist/index.html";
+				}else{
+					alert("用户名或密码不正确");
+				}
+			},
+			error:function (data) {
+
+			}
+		})
+	}
+
+    $(function(){
+        Victor("container", "output");   //登录背景函数
+        $("#entry_name").focus();
+        $(document).keydown(function(event){
+            if(event.keyCode==13){
+                $("#entry_btn").click();
+            }
+        });
+    });
+</script>
+<div style="text-align:center;">
+</div>
+</body>
+</html>

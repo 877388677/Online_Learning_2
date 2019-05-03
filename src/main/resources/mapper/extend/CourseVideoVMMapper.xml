@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysc.apps.online.dao.extend.CourseVideoVMMapper">
+ 
+   <resultMap id="CourseVideoVMResultMap" type="com.ysc.apps.online.bean.extend.CourseVideoVM">
+      <id column="id" property="id"/>
+      <result column="file" property="file"/>
+      <association 
+          column="chapter_id" 
+          property="courseChapter" 
+          select="com.ysc.apps.online.dao.CourseChapterMapper.selectByPrimaryKey">
+      </association>
+      
+      <collection column="id" property="discuss" javaType="ArrayList"
+			ofType="com.ysc.apps.online.bean.Discuss" select="selectDiscussByVideoId">
+		</collection>
+      
+  </resultMap>
+ 
+ 
+    <resultMap id="DiscussMap" type="com.ysc.apps.online.bean.Discuss">
+		<result column="video_id" property="videoId" />
+	</resultMap>
+	
+	<select id="selectDiscussByVideoId" parameterType="long"
+		resultMap="DiscussMap">
+		select * from discuss where video_id=#{id}
+	</select>
+ 
+ 
+ 
+ 
+ 
+ 
+  <select id="selectAll" resultMap="CourseVideoVMResultMap">
+       select * from course_video
+  </select>
+   
+  
+  <select id="selectById" resultMap="CourseVideoVMResultMap">
+       select * from course_video where id = #{id}
+  </select>
+  
+  
+</mapper>

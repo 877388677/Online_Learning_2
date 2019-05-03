@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysc.apps.online.dao.extend.HomeworkAnswerVMMapper">
+ 
+   <resultMap id="HomeworkAnswerVMResultMap" type="com.ysc.apps.online.bean.extend.HomeworkAnswerVM">
+      <id column="id" property="id"/>
+      <result column="answer" property="answer"/>
+      <result column="state" property="state"/>
+      <association 
+          column="user_id" 
+          property="user" 
+          select="com.ysc.apps.online.dao.UserMapper.selectByPrimaryKey">
+      </association>
+      <association 
+          column="question_id" 
+          property="question" 
+          select="com.ysc.apps.online.dao.HomeworkQuestionMapper.selectByPrimaryKey">
+      </association>
+      
+      
+  </resultMap>
+ 
+ 
+ 
+ 
+  <select id="selectAll" resultMap="HomeworkAnswerVMResultMap">
+       select * from homework_answer
+  </select>
+   
+  
+  <select id="selectById" resultMap="HomeworkAnswerVMResultMap">
+       select * from homework_answer where id = #{id}
+  </select>
+  
+  
+</mapper>

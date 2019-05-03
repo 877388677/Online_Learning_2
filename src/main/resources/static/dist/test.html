@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="deleteUserById" id="myform" class="form">
+
+<input type="text" id="id" name="getId">
+</form>
+<input type="button" onclick="del(id)" value="删除">
+
+
+
+</body>
+
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+	function del(id){
+		var id = $("#id").val();
+	    console.log(id);	 
+		$.ajax({
+			type:"get",
+			url:"/user/deleteUserById",
+			data:{
+				"id":id
+			},
+			success:function (data) {
+				var jsonObj = data;
+				  console.log(jsonObj.message);	 
+				if(jsonObj.message == "success"){
+					alert("成功成功");
+				}else{
+					alert("失败失败");
+				}
+			},
+			error:function (data) {
+				
+			}
+		})
+		
+	}
+	</script>
+</html>
