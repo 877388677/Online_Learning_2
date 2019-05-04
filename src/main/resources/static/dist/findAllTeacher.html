@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>检索所有课程信息</title>
+    <title>检索所有用户</title>
     <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
+    
 	<link rel="stylesheet" href="./css/style_yang.css">
 </head>
 <body class="sidebar-fixed header-fixed">
@@ -246,77 +247,70 @@
                             </li>
                         </ul>
                     </li>
-                </ul>
+                </ul>s
             </nav>
         </div>
 
         <div class="content">
 
-	
-		
-		<ul class="top_ul">
+			<ul class="top_ul">
 			  <li class="top_li"><a  href="http://localhost:8080/dist/OnlineLearningIndex.html">主页</a></li>
-			  <li class="top_li"><a class="active" href="http://localhost:8080/dist/findAllCourse.html">所有课程</a></li>
-			  <li class="top_li"><a href="http://localhost:8080/dist/findAllTeacher.html">名师堂</a></li>
+			  <li class="top_li"><a href="http://localhost:8080/dist/findAllCourse.html">所有课程</a></li>
+			  <li class="top_li"><a class="active" href="http://localhost:8080/dist/findAllTeacher.html">名师堂</a></li>
 			   <li class="top_li"><a href="http://localhost:8080/dist/findAllNotices.html">公告</a></li>
 			  <li class="top_li"><a href="#about">关于</a></li>	
 				<div style="float:right;  margin-top: 5px">
-					<input type="text" class="notice_input" placeholder="搜索课程"  />
-					<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
-				</div>	
+				<input type="text" class="notice_input" placeholder="搜索教师"  />
+				<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+			</div>	
 				
 			</ul>
-			<br>
-			<h3 style="text-shadow: 5px 5px 5px #FF0000">所有课程</h3>	
-                  <div id="find">
-                  
+
+		<div class="card-body">
+		
+			<input type="submit"  style="float:right; margin-bottom: 10px" class="btn btn-primary" onclick="findall()" value="刷新">
+			<input type="submit"  style="float:right" class="btn btn-primary" onclick="chk()" value="选中">
+			<input type="submit"  style="float:right" class="btn btn-primary" onclick="deleteByid(id)" value="删除">
+               <br>
+                  <div class="table-responsive">
+                 	 <form action="deleteUserById" id="myform" class="form">
+                 		 <table class="table table-striped" id="find"></table>
+                	  </form>
                   </div>
+        </div>
 						
         </div>
     </div>
 </div>
+<script src="./vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-	
-	
-	
-	
-	
 	//Ajax方式请求后台数据 
     function findall(){
 	    $.ajax({
                type: "GET",
-               url: "http://localhost:8080/course/findAllCourseVM",
+               url: "http://localhost:8080/user/findAllUser/",
 		       dataType:"json",
 		       success: function(data){
+		    
 		    	   
-		    	    console.log(data);	
-		    	    
-		    	    var jsonObj = data;
-		    	    console.log("data:"+jsonObj.data);	
-		    	    console.log("msg:"+jsonObj.message);
-		    	  
-		    	   
-				    var html="";
-				    for(var item in  jsonObj.data){
+		    	     
+		    		var jsonObj = data;
+		    	 
+				    var html="<table><tr class='grid-th' > <th><input type='checkbox' name='chkAll' id='chkAll' title='全选/取消' onclick='selectAll()' /></th><th>ID</th><th>UserName</th><th>Gender</th><th>Age</th></tr>"
+				    for(var item in jsonObj.data){
 				    	
 				    	var id=jsonObj.data[item].id;
-						var startTime = jsonObj.data[item].startTime;
-						var name = jsonObj.data[item].name;
-					    var description = jsonObj.data[item].description;
-					//    var chapter = jsonObj.data[item].chapter;
-					    //var video =  jsonObj.data[item].video;
-					    html+="<ul style='font-size: 20px'>"+name+"<ul>"
-					    for(var item1 in jsonObj.data[item].chapter){
-					    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);
-					        var chapterId = jsonObj.data[item].chapter[item1].id;
-					    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
-					    	var chapterName = jsonObj.data[item].chapter[item1].description;
-					    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
-					    	
-					    } 
-					    html+="     </ul></li></ul>"
+						var username = jsonObj.data[item].username;
+					    var gender = jsonObj.data[item].gender;
+					    var age = jsonObj.data[item].age;
+					    var type = jsonObj.data[item].type;
+					    if(type==2){
+			    	    	
+					 	   html+="<tr> <td><input type='checkbox' name='test' value="+id+"></td> <td>"+id+"</td> <td class='text-nowrap'>"+username+"</td> <td>"+gender+"</td>   <td>"+age+"</td></tr>"; 
+				   
+					    }
 				    }
-				     
+				      html+="</table>"
 						    $("#find").html(html);
                },
 			   error:function(){
@@ -324,9 +318,52 @@
 			   }
           });
     }
-	window.onload = findall;
+    function chk() {
+
+        var obj = document.getElementsByName('test');
+
+        console.log(obj);
+
+        var s = '';
+
+        for (var i = 0; i < obj.length; i++) {
+
+            if (obj[i].checked) s += obj[i].value + ',';
+
+       }
+
+       alert(s == '' ? '你还没有选择任何内容！' : s);
+
+   }
+	
+	function deleteByid(id){
+	    var id = document.getElementsByName('test');
+	    console.log(id);	 
+		$.ajax({
+			type:"get",
+			url:"/user/deleteUserById",
+			data:{
+				"id":id
+			},
+			success:function (data) {
+				var jsonObj = data;
+				  console.log(jsonObj.message);	 
+				if(jsonObj.message == "success"){
+					alert("成功成功");
+				}else{
+					alert("失败失败");
+				}
+			},
+			error:function (data) {
+				
+			}
+		})
+		
+	}
+	
+	window.onload=findall;
 		</script>
-<script src="./vendor/jquery/jquery.min.js"></script>
+
 <script src="./vendor/popper.js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="./vendor/chart.js/chart.min.js"></script>

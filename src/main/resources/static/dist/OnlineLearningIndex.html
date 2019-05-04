@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>检索所有课程信息</title>
+    <title>无知在线学习平台</title>
     <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 	<link rel="stylesheet" href="./css/style_yang.css">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+ 
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  </style>
 </head>
 <body class="sidebar-fixed header-fixed">
 <div class="page-wrapper">
@@ -249,88 +258,227 @@
                 </ul>
             </nav>
         </div>
+			
 
         <div class="content">
-
-	
-		
-		<ul class="top_ul">
-			  <li class="top_li"><a  href="http://localhost:8080/dist/OnlineLearningIndex.html">主页</a></li>
-			  <li class="top_li"><a class="active" href="http://localhost:8080/dist/findAllCourse.html">所有课程</a></li>
+			 
+			<ul class="top_ul">
+			  <li class="top_li"><a class="active" href="http://localhost:8080/dist/OnlineLearningIndex.html">主页</a></li>
+			  <li class="top_li"><a href="http://localhost:8080/dist/findAllCourse.html">所有课程</a></li>
 			  <li class="top_li"><a href="http://localhost:8080/dist/findAllTeacher.html">名师堂</a></li>
 			   <li class="top_li"><a href="http://localhost:8080/dist/findAllNotices.html">公告</a></li>
-			  <li class="top_li"><a href="#about">关于</a></li>	
+			  <li class="top_li"><a href="http://localhost:8080/dist/findAllNotices.html">关于</a></li>	
 				<div style="float:right;  margin-top: 5px">
 					<input type="text" class="notice_input" placeholder="搜索课程"  />
 					<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
-				</div>	
-				
+				</div>
 			</ul>
-			<br>
-			<h3 style="text-shadow: 5px 5px 5px #FF0000">所有课程</h3>	
-                  <div id="find">
-                  
-                  </div>
-						
-        </div>
+			
+			<div id="demo" class="carousel slide" data-ride="carousel">
+ 
+  <!-- 指示符 -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+ 
+  <!-- 轮播图片 -->
+  <div class="carousel-inner" style="background-color: beige">
+    <div class="carousel-item active">
+      <img style="height: 300px ; width: 700px ; margin-left: 170px" src="imgs/index1.jpg">
+      <div class="carousel-caption">
+        <h3>无知在线学习平台</h3>
+        <p>欢迎您的光临！</p>
+      </div>
     </div>
+    <div class="carousel-item">
+      <img style="height: 300px; width: 700px ; margin-left: 170px" src="imgs/index2.jpg">
+      <div class="carousel-caption">
+        <h3>无知在线学习平台</h3>
+        <p>欢迎您的光临！</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img style="height: 300px; width: 700px ; margin-left: 170px" src="imgs/index3.jpg">
+      <div class="carousel-caption">
+        <h3>无知在线学习平台</h3>
+        <p>欢迎您的光临！</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- 左右切换按钮 -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+ 
 </div>
-<script type="text/javascript">
-	
-	
-	
-	
-	
-	//Ajax方式请求后台数据 
-    function findall(){
-	    $.ajax({
-               type: "GET",
-               url: "http://localhost:8080/course/findAllCourseVM",
+		<!-- 公告跑马灯 -->	
+			<marquee id="affiche" 
+					 align="left" 
+					 behavior="scroll"
+					 bgcolor="#C8C8C8 " 
+					 direction="left" 
+					 height="30" width="100%" 
+					 hspace="0"  vspace="30" 
+					 loop="-1" 
+					 scrollamount="5" 
+					 scrolldelay="100" 
+					 onMouseOut="this.start()" 
+					 onMouseOver="this.stop()"> 
+			
+			<div id="findNoticesName"></div>
+
+			</marquee>
+			
+			
+			<br>
+			
+			<!-- 图片展示课程 -->
+			<h2 style="text-align:left">精品课程</h2>
+			<br>
+		<div style="width: 100% ; height: 340px">
+			<div class="responsive">
+			  <div class="img">
+				  <a target="_blank"  href="http://www.baidu.com">
+				 	 <img style=" height:220px" src="imgs/course2.jpg">
+				  </a>
+				<div class="desc">Add a description of the image here</div>
+			  </div>
+			</div>
+
+
+			<div class="responsive">
+			  <div class="img">
+				  <a target="_blank"  href="http://www.baidu.com">
+				  	<img style=" height:220px" src="imgs/course4.jpg">
+				  </a>
+				<div class="desc">Add a description of the image here</div>
+			  </div>
+			</div>
+
+			<div class="responsive">
+			  <div class="img">
+				<a target="_blank"  href="http://www.baidu.com">
+				  <img style=" height:220px" src="imgs/course1.jpg">
+				</a>
+				<div class="desc">Add a description of the image here</div>
+			  </div>
+			</div>
+
+			<div class="responsive">
+			  <div class="img">
+				<a target="_blank" href="http://www.baidu.com">
+				  <img  style=" height:220px" src="imgs/course3.jpg">
+				</a>
+				<div class="desc">Add a description of the image here</div>
+			  </div>
+			</div>
+			
+</div>		
+			
+			<!-- 展示框 -->
+		 <div class="col-md-6 mb-4 col-lg-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Messages</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home" role="tabpanel">
+                            1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        </div>
+
+                        <div class="tab-pane" id="profile" role="tabpanel">
+                            2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        </div>
+
+                        <div class="tab-pane" id="messages" role="tabpanel">
+                            3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+                        </div>
+                    </div>
+                </div>	
+		 
+    </div>
+		
+	<script type="text/javascript">
+		
+	 function findallnotices(){
+		 $.ajax({
+			 type: "GET",
+             url: "http://localhost:8080/notices/findAllNotices/",
 		       dataType:"json",
+		       
 		       success: function(data){
+		    	   var jsonObj = data;
 		    	   
-		    	    console.log(data);	
+		    	    console.log("data:"+data);	  
 		    	    
-		    	    var jsonObj = data;
-		    	    console.log("data:"+jsonObj.data);	
-		    	    console.log("msg:"+jsonObj.message);
-		    	  
+		    	    
+		    	    var html="";
+					    for(var item in jsonObj.data){
+					    	var id=jsonObj.data[item].id;
+							var noticename = jsonObj.data[item].noticename;
+							var time = jsonObj.data[item].time;
+						    var upname = jsonObj.data[item].upname;
+						    var description = jsonObj.data[item].description;
+						    html+="<a href='http://localhost:8080/dist/findAllNotices.html'>";
+						    html+="   ****"+noticename+"****         "; 
+						    html+="</a>"
+					    }
+		    	    
 		    	   
-				    var html="";
-				    for(var item in  jsonObj.data){
-				    	
-				    	var id=jsonObj.data[item].id;
-						var startTime = jsonObj.data[item].startTime;
-						var name = jsonObj.data[item].name;
-					    var description = jsonObj.data[item].description;
-					//    var chapter = jsonObj.data[item].chapter;
-					    //var video =  jsonObj.data[item].video;
-					    html+="<ul style='font-size: 20px'>"+name+"<ul>"
-					    for(var item1 in jsonObj.data[item].chapter){
-					    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);
-					        var chapterId = jsonObj.data[item].chapter[item1].id;
-					    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
-					    	var chapterName = jsonObj.data[item].chapter[item1].description;
-					    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
-					    	
-					    } 
-					    html+="     </ul></li></ul>"
-				    }
-				     
-						    $("#find").html(html);
-               },
-			   error:function(){
+				        $("#findNoticesName").html(html);
+		       },
+		
+		       error:function(){
 				   alert("error");
 			   }
-          });
-    }
-	window.onload = findall;
-		</script>
+		 
+		 });
+		
+	 }
+	 window.onload=findallnotices;
+	 
+	 function searchCourse(keywords){
+		 $.ajax({
+			
+			 type: "GET",
+             url: "http://localhost:8080/notices/findAllNotices/",
+		       dataType:"json",
+			 
+		 }),
+		 
+		 
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	</script>	
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="./vendor/chart.js/chart.min.js"></script>
 <script src="./js/carbon.js"></script>
 <script src="./js/demo.js"></script>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>

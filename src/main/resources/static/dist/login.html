@@ -47,8 +47,9 @@
 				"password": password
 			},
 			success:function (data) {
+				console.log("data:"+data);
 				if(data == "success"){
-					window.location.href = "/dist/index.html";
+					window.location.href = "/dist/OnlineLearningIndex.html";
 				}else{
 					alert("用户名或密码不正确");
 				}
