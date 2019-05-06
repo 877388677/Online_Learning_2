@@ -16,15 +16,15 @@
             <div class="col-md-5">
                 <div class="card p-4">
                 
-          <form  action="http://localhost:8080/user/register" method="post" class="form">       
-                    <div class="card-header text-center text-uppercase h4 font-weight-light">
+               <div class="card-header text-center text-uppercase h4 font-weight-light">
                         Register
                     </div>
 
                     <div class="card-body py-5">
                     
                     
-                     
+                      <form  action="http://localhost:8080/user/register" method="post" class="form">       
+              
                   
                     	<div class="form-group">
                             <label class="form-control-label">Name</label>
@@ -50,14 +50,14 @@
                             <label class="form-control-label">User Type（1-管理员 2-教师 3-学生）</label>
                             <input type="text" name="type" placeholder="用户类别" pattern="[1-3]" class="form-control">
                         </div>
-                                  
+                                </form>     
  
                     </div>
                     
                         <div class="card-footer">
 	                        <button type="submit" onclick="reg()" class="btn btn-success btn-block">Create Account</button>
 	                    </div>
-                      </form>  
+                     
                 
                 </div>
             </div>
@@ -73,43 +73,38 @@
 		var gender = $("#gender").val();
 		var age = $("#age").val();
 		var type = $("#type").val();
-		
-		if (username == "" || password == "") {
+
+		if (username == "" || password == "" || password1 == "") {
 			alert("用户名或密码不能为空");
 			return;
 		}
+	
 		
 		
 		$.ajax({
 			type:"post",
 			url:"http://localhost:8080/user/register",
 			data: {
-
+				
 				"username": username,
 				"password": password,
 				"gender": gender,
 				"age": age,
 				"type": type
-				
 			},
-			dataType: "json",
+			dataType:'json',
 			success:function (data) {
 				
-				var jsonObj=data;
-				msg = jsonObj.message;
-				console.log("msg:"+msg);
-				if(msg == success){
-					alert(" 注册成功  ");
-					window.location.href = "/dist/index.html";
-				}else{
-					alert(" 用户名已存在注册失败  ");
-				}
+				console.log("data:"+data);
+				alert("成功");
+				window.location.href = "/dist/OnlineLearningIndex.html";
 			},
-			
-			error:function (data) {
+			 error:function (data) {
+				console.log("data:"+data);
 				alert(" 注册失败 ");
-			}
-		})
+	//		
+			} 
+		});
 	}
 
 

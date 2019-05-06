@@ -269,8 +269,8 @@
 			   <li class="top_li"><a href="http://localhost:8080/dist/findAllNotices.html">公告</a></li>
 			  <li class="top_li"><a href="http://localhost:8080/dist/findAllNotices.html">关于</a></li>	
 				<div style="float:right;  margin-top: 5px">
-					<input type="text" class="notice_input" placeholder="搜索课程"  />
-					<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+					<input type="text" class="notice_input" id="keyword" placeholder="搜索课程"  />
+					<button type="button" onclick="findKeywords()" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
 				</div>
 			</ul>
 			
@@ -341,15 +341,15 @@
 			<!-- 图片展示课程 -->
 			<h2 style="text-align:left">精品课程</h2>
 			<br>
-		<div style="width: 100% ; height: 340px">
-			<div class="responsive">
-			  <div class="img">
-				  <a target="_blank"  href="http://www.baidu.com">
-				 	 <img style=" height:220px" src="imgs/course2.jpg">
-				  </a>
-				<div class="desc">Add a description of the image here</div>
-			  </div>
-			</div>
+		<div id="allcourse" style="width: 100% ; height: 340px">
+				<div class="responsive">
+				  <div class="img">
+					  <a target="_blank"  href="http://www.baidu.com">
+					 	 <img style=" height:220px" src="imgs/course2.jpg">
+					  </a>
+					<div class="desc">Add a description of the image here</div>
+				  </div>
+				</div>
 
 
 			<div class="responsive">
@@ -453,22 +453,54 @@
 	 }
 	 window.onload=findallnotices;
 	 
-	 function searchCourse(keywords){
-		 $.ajax({
+	 
+	 
+	/*  
+	 function findKeywords(){
 			
-			 type: "GET",
-             url: "http://localhost:8080/notices/findAllNotices/",
-		       dataType:"json",
-			 
-		 }),
-		 
-		 
-	 }
-	 
-	 
-	 
-	 
-	 
+			var keyword = $("#keyword").val();
+			$.ajax({
+				
+				type:"get",
+				url:"http://localhost:8080/course/findCoursesByKeywordVM",
+				dataType:"json",
+				data:{
+					"keywords":keyword
+				},
+			
+				success:function(data){
+					
+					var jsonObj = data;
+					 console.log("data:"+jsonObj.data);	
+			    	 console.log("msg:"+jsonObj.message);
+					
+					for(var item in jsonObj.data){
+				
+					var id=jsonObj.data[item].id;
+					var startTime = jsonObj.data[item].startTime;
+					var name = jsonObj.data[item].name;
+				    var description = jsonObj.data[item].description;
+				    var html="<h2>课程相关搜索:"+keyword+"</h2>";
+				    html+="<ul style='font-size: 20px'>"+name+"<ul>"
+				    for(var item1 in jsonObj.data[item].chapter){
+				    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);
+				        var chapterId = jsonObj.data[item].chapter[item1].id;
+				    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
+				    	var chapterName = jsonObj.data[item].chapter[item1].description;
+				    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
+				    } 
+				    html+="     </ul></li></ul>"
+				    
+						
+					}
+				        $("#findkey").html(html);
+		       },
+			   error:function(){
+				   alert("error");
+			   }
+		  });
+		}
+	  */
 	 
 	</script>	
 <script src="./vendor/jquery/jquery.min.js"></script>

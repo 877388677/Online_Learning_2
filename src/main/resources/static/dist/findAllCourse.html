@@ -261,15 +261,22 @@
 			   <li class="top_li"><a href="http://localhost:8080/dist/findAllNotices.html">公告</a></li>
 			  <li class="top_li"><a href="#about">关于</a></li>	
 				<div style="float:right;  margin-top: 5px">
-					<input type="text" class="notice_input" placeholder="搜索课程"  />
-					<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+					<form action="findCoursesByKeywordVM">
+						<input type="text" class="notice_input" id="keyword" placeholder="搜索课程"  />
+				
+					<button type="button" onclick="findKeywords()" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+					</form>	
 				</div>	
 				
 			</ul>
 			<br>
-			<h3 style="text-shadow: 5px 5px 5px #FF0000">所有课程</h3>	
+			
+                 <div id="findkey" style="background-color: chocolate ; color: white" >
+                  	
+                  </div>
+                  <h3 style="text-shadow: 5px 5px 5px #FF0000">所有课程</h3>	
                   <div id="find">
-                  
+                  	
                   </div>
 						
         </div>
@@ -292,8 +299,7 @@
 		    	    console.log(data);	
 		    	    
 		    	    var jsonObj = data;
-		    	    console.log("data:"+jsonObj.data);	
-		    	    console.log("msg:"+jsonObj.message);
+		    	   
 		    	  
 		    	   
 				    var html="";
@@ -307,8 +313,7 @@
 					    //var video =  jsonObj.data[item].video;
 					    html+="<ul style='font-size: 20px'>"+name+"<ul>"
 					    for(var item1 in jsonObj.data[item].chapter){
-					    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);
-					        var chapterId = jsonObj.data[item].chapter[item1].id;
+					    	var chapterId = jsonObj.data[item].chapter[item1].id;
 					    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
 					    	var chapterName = jsonObj.data[item].chapter[item1].description;
 					    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
@@ -325,6 +330,55 @@
           });
     }
 	window.onload = findall;
+	
+	
+	
+	
+	function findKeywords(){
+		
+		var keyword = $("#keyword").val();
+		$.ajax({
+			
+			type:"get",
+			url:"http://localhost:8080/course/findCoursesByKeywordVM",
+			dataType:"json",
+			data:{
+				"keywords":keyword
+			},
+		
+			success:function(data){
+				
+				var jsonObj = data;
+				 console.log("data:"+jsonObj.data);	
+		    	 console.log("msg:"+jsonObj.message);
+				
+				for(var item in jsonObj.data){
+			
+				var id=jsonObj.data[item].id;
+				var startTime = jsonObj.data[item].startTime;
+				var name = jsonObj.data[item].name;
+			    var description = jsonObj.data[item].description;
+			    var html="<h2>课程相关搜索:"+keyword+"</h2>";
+			    html+="<ul style='font-size: 20px'>"+name+"<ul>"
+			    for(var item1 in jsonObj.data[item].chapter){
+			    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);
+			        var chapterId = jsonObj.data[item].chapter[item1].id;
+			    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
+			    	var chapterName = jsonObj.data[item].chapter[item1].description;
+			    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
+			    } 
+			    html+="     </ul></li></ul>"
+			    
+					
+				}
+			        $("#findkey").html(html);
+	       },
+		   error:function(){
+			   alert("error");
+		   }
+	  });
+	}
+		
 		</script>
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>

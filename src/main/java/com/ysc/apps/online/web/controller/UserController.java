@@ -1,7 +1,6 @@
 package com.ysc.apps.online.web.controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +39,8 @@ public class UserController {
 	public MsgResponse register(User user){
 		try {
 			userService.register(user);
-			return MsgResponse.success("success" , null);
+			System.out.println(MsgResponse.success("success", null));
+			return MsgResponse.success("success", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error("error");

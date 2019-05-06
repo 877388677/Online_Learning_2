@@ -277,17 +277,7 @@
 		       dataType:"json",
 		       success: function(data){
 		    
-		    	   
-		    	     
 		    		var jsonObj = data;
-		    	    console.log("msg:"+jsonObj.message);
-		    	    var id=jsonObj.data["id"];
-		    	    var username = jsonObj.data["username"];
-					var password = jsonObj.data["password"];
-					var gender = jsonObj.data["gender"];
-				    var age = jsonObj.data["age"];
-				    var type = jsonObj.data["type"];
-
 		    	    
 				    var html="<table><tr class='grid-th' > <th><input type='checkbox' name='chkAll' id='chkAll' title='全选/取消' onclick='selectAll()' /></th><th>ID</th><th>UserName</th><th>Password</th><th>Gender</th><th>Age</th><th>Type</th></tr>"
 				    for(var item in jsonObj.data){
