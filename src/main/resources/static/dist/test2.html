@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+
+function checkCookie(){
+	   username=getCookie('username');
+	   console.log("user"+username);
+	    //alert(username);
+}
+
+function detail(){
+	 var username=getCookie('username');
+	 $.ajax({
+			type:"get",
+			url:"http://localhost:8080/courseChapter/findAllChapterByCourseIdVM",
+			dataType:"json",
+			data:{
+				"id":username
+			},
+			success:function(data){
+			    console.log(data);
+			},  
+			error:function(){
+				console.log("findAllChapterByCourseIdVM error");
+		    }
+	});
+}
+//window.onload=checkCookie;
+</script>
+</head>
+<body>
+<button onclick="detail()">get cookie</button>
+</body>
+</html>

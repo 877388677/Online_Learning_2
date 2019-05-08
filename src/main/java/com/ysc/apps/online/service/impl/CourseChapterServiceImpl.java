@@ -63,4 +63,9 @@ public class CourseChapterServiceImpl implements ICourseChapterService{
 		
 	}
 
+	@Override
+	public List<CourseChapterVM> findByCourseId(long id) throws Exception {
+		return chapterVMMapper.selectAllByCourseId(id);
+	}
+
 }

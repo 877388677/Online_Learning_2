@@ -246,7 +246,7 @@
                             </li>
                         </ul>
                     </li>
-                </ul>s
+                </ul>
             </nav>
         </div>
 
@@ -303,7 +303,7 @@
 
         var obj = document.getElementsByName('test');
 
-        console.log(obj);
+        console.log("obj"+obj);
 
         var s = '';
 
@@ -318,18 +318,27 @@
    }
 	
 	function deleteByid(id){
-	    var id = document.getElementsByName('test');
-	    console.log(id);	 
+	    var obj = document.getElementsByName('test');
+	    
+	    var s = '';
+
+        for (var i = 0; i < obj.length; i++) {
+
+            if (obj[i].checked) s += obj[i].value + ',';
+
+       }
+        
+        console.log("s:"+s);
 		$.ajax({
 			type:"get",
-			url:"/user/deleteUserById",
+			url:"http://localhost:8080/user/batchDelete",
 			data:{
-				"id":id
+				"ids":s
 			},
 			success:function (data) {
 				var jsonObj = data;
 				  console.log(jsonObj.message);	 
-				if(jsonObj.message == "success"){
+				if(jsonObj.message != "success"){
 					alert("成功成功");
 				}else{
 					alert("失败失败");

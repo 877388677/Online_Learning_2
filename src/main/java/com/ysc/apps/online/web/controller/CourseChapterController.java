@@ -34,6 +34,20 @@ public class CourseChapterController {
 		}
 	}
 	
+	@GetMapping("findAllChapterByCourseIdVM")
+	public MsgResponse findAllChapterByCourseIdVM(Long id){
+		try {
+			List<CourseChapterVM> list =chapterService.findByCourseId(id);
+			//返回成功
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	
 	@GetMapping("findChapterByIdVM")
 	public MsgResponse findChapterByIdVM(Long id){
 		try {

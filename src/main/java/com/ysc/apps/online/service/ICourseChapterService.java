@@ -16,6 +16,8 @@ public interface ICourseChapterService {
 	//通过关键字查询课程章节
 	List<CourseChapterVM> findByKeyword (String keywords) throws Exception;
 	
+	List<CourseChapterVM> findByCourseId (long id) throws Exception;
+	
 	//保存或更新（修改）课程章节信息
 	void saveOrUpdate (CourseChapter chapter) throws Exception;
 

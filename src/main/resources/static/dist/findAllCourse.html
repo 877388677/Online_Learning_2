@@ -283,11 +283,14 @@
     </div>
 </div>
 <script type="text/javascript">
-	
-	
-	
-	
-	
+ 	function setId(id){
+ 		setCookie("courseId",id,1000);
+ 	}
+	function setCookie(c_name,value,expiredays){
+		var exdate=new Date()
+		exdate.setDate(exdate.getDate()+expiredays)
+		document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+	}
 	//Ajax方式请求后台数据 
     function findall(){
 	    $.ajax({
@@ -299,7 +302,8 @@
 		    	    console.log(data);	
 		    	    
 		    	    var jsonObj = data;
-		    	   
+		    	    var str='id'; 
+				     var day= 365;
 		    	  
 		    	   
 				    var html="";
@@ -309,9 +313,9 @@
 						var startTime = jsonObj.data[item].startTime;
 						var name = jsonObj.data[item].name;
 					    var description = jsonObj.data[item].description;
-					//    var chapter = jsonObj.data[item].chapter;
-					    //var video =  jsonObj.data[item].video;
-					    html+="<ul style='font-size: 20px'>"+name+"<ul>"
+					     
+					    var html1 = "<p id=''>"+id+"</p>";
+					    html+="<ul style='font-size: 20px'><a onclick='setId("+id+");' href='test.html'>"+name+"</a><ul>"
 					    for(var item1 in jsonObj.data[item].chapter){
 					    	var chapterId = jsonObj.data[item].chapter[item1].id;
 					    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
@@ -330,9 +334,6 @@
           });
     }
 	window.onload = findall;
-	
-	
-	
 	
 	function findKeywords(){
 		
@@ -358,7 +359,7 @@
 				var startTime = jsonObj.data[item].startTime;
 				var name = jsonObj.data[item].name;
 			    var description = jsonObj.data[item].description;
-			    var html="<h2>课程相关搜索:"+keyword+"</h2>";
+			    var html="<h2>课程相关搜索:"+keyword+ "</h2>";
 			    html+="<ul style='font-size: 20px'>"+name+"<ul>"
 			    for(var item1 in jsonObj.data[item].chapter){
 			    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);

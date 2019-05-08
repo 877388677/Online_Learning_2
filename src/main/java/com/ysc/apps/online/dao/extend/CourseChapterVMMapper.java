@@ -13,4 +13,5 @@ public interface CourseChapterVMMapper {
 	
 	List<CourseChapterVM> query(String keywords);
 
+	List<CourseChapterVM> selectAllByCourseId(Long id);
 }

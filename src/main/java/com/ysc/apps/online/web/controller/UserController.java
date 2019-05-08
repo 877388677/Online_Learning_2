@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ysc.apps.online.bean.User;
@@ -95,6 +96,15 @@ public class UserController {
 		}
 	}
 	
-	
+	@GetMapping("batchDelete")
+	public MsgResponse batchDelete(@RequestParam List<Long> ids){
+		try{
+			userService.batchDelete(ids);
+			return MsgResponse.success("success", null);
+		}catch(Exception e){
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 
 }

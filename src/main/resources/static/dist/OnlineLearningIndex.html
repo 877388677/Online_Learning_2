@@ -18,6 +18,9 @@
       height: 100%;
   }
   </style>
+  
+
+  
 </head>
 <body class="sidebar-fixed header-fixed">
 <div class="page-wrapper">
@@ -52,7 +55,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="./imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
-                    <span class="small ml-1 d-md-down-none">John Smith</span>
+                    <span class="small ml-1 d-md-down-none" id="this">  </span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -317,6 +320,7 @@
   </a>
  
 </div>
+
 		<!-- 公告跑马灯 -->	
 			<marquee id="affiche" 
 					 align="left" 
@@ -416,7 +420,30 @@
 		
 	<script type="text/javascript">
 		
+	function getCookie(c_name)
+	{  
+	 if (document.cookie.length>0)
+	  {
+	  c_start=document.cookie.indexOf(c_name + "=")
+	  if (c_start!=-1)
+	    { 
+	    c_start=c_start + c_name.length+1 
+	    c_end=document.cookie.indexOf(";",c_start)
+	    if (c_end==-1) c_end=document.cookie.length
+	    return unescape(document.cookie.substring(c_start,c_end))
+	    } 
+	  } 
+	return ""
+	}
+
+	function checkCookie(){
+		  
+	}
+//	window.onload=checkCookie;
 	 function findallnotices(){
+		 
+		 username=getCookie('username');
+		 console.log("user"+username);
 		 $.ajax({
 			 type: "GET",
              url: "http://localhost:8080/notices/findAllNotices/",
@@ -426,8 +453,7 @@
 		    	   var jsonObj = data;
 		    	   
 		    	    console.log("data:"+data);	  
-		    	    
-		    	    
+		    	  
 		    	    var html="";
 					    for(var item in jsonObj.data){
 					    	var id=jsonObj.data[item].id;
@@ -439,8 +465,8 @@
 						    html+="   ****"+noticename+"****         "; 
 						    html+="</a>"
 					    }
-		    	    
-		    	   
+		    	    var html1=username+"，你好" ;
+					    $("#this").html(html1);
 				        $("#findNoticesName").html(html);
 		       },
 		
@@ -453,56 +479,9 @@
 	 }
 	 window.onload=findallnotices;
 	 
-	 
-	 
-	/*  
-	 function findKeywords(){
-			
-			var keyword = $("#keyword").val();
-			$.ajax({
-				
-				type:"get",
-				url:"http://localhost:8080/course/findCoursesByKeywordVM",
-				dataType:"json",
-				data:{
-					"keywords":keyword
-				},
-			
-				success:function(data){
-					
-					var jsonObj = data;
-					 console.log("data:"+jsonObj.data);	
-			    	 console.log("msg:"+jsonObj.message);
-					
-					for(var item in jsonObj.data){
-				
-					var id=jsonObj.data[item].id;
-					var startTime = jsonObj.data[item].startTime;
-					var name = jsonObj.data[item].name;
-				    var description = jsonObj.data[item].description;
-				    var html="<h2>课程相关搜索:"+keyword+"</h2>";
-				    html+="<ul style='font-size: 20px'>"+name+"<ul>"
-				    for(var item1 in jsonObj.data[item].chapter){
-				    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);
-				        var chapterId = jsonObj.data[item].chapter[item1].id;
-				    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
-				    	var chapterName = jsonObj.data[item].chapter[item1].description;
-				    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
-				    } 
-				    html+="     </ul></li></ul>"
-				    
-						
-					}
-				        $("#findkey").html(html);
-		       },
-			   error:function(){
-				   alert("error");
-			   }
-		  });
-		}
-	  */
-	 
 	</script>	
+
+  
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>

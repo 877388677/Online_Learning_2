@@ -94,3 +94,181 @@ div.desc {
     display: table;
     clear: both;
 }
+
+
+
+/*视频大小*/
+video {
+    width: 100%;
+    height: auto;
+}
+
+.aside {
+    background-color: #33b5e5;
+    padding: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.footer {
+    background-color: #0099cc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+}
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    width: 100%;
+}
+@media only screen and (min-width: 600px) {
+    .col-s-12 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+.header {
+    background-color: #9933cc;
+    color: #ffffff;
+    padding: 15px;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color :#33b5e5;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.menu li:hover {
+    background-color: #0099cc;
+}
+
+*{
+	margin: 0 ;
+	border: none;
+	padding: 0;
+}
+body{
+	background: lightcoral;
+}
+#cans{
+	position: relative;
+	margin: 0 auto;
+	margin-top: 5vh;
+	height: 500px;
+	width: 60vw;
+}
+#video{
+	/*height: 80vh;*/
+	float: left;
+	background: black;
+	position: relative;   /*去掉这句将会使得video优先级失效*/
+	z-index: 99;
+}
+
+aside{
+	float: left;
+	height: 500px;
+	width: 10vw;
+	background: black;
+	opacity: 0.9;
+	position: relative;
+}
+aside header h4{
+	color: white;
+	margin-bottom: 20px;
+	margin-top: 5px;
+	text-align: center;
+}
+aside ul{
+	background: black;
+	width: 10vw;
+	list-style: none;
+	text-align: center;
+}
+aside ul li{
+	color: white;
+	font-size: 14px;
+	line-height:30px ;
+}
+
+aside ul li:hover{
+	
+	background-color: lightgray;
+	color: lightcoral;
+	font-weight: bold;
+}
+
+aside #playList-hidden {
+	position: absolute;
+	bottom: 250px;
+	right: 0;
+	width:20px ;
+	height: 32px;
+	background: lightgoldenrodyellow;
+	font-size: 16px;
+	font-weight: bold;
+	border-top-left-radius:10px ;
+	border-bottom-left-radius:10px ;
+	opacity: 0.5;
+	z-index: 10000;
+}
+
+#cans #playList-show1{
+	margin-top: 230px;
+	width:20px ;
+	height: 32px;
+	background:lightgoldenrodyellow;
+	font-size: 16px;
+	font-weight: bold;
+	border-top-right-radius:10px ;
+	border-bottom-right-radius:10px ;
+	opacity: 1;
+	visibility: hidden;
+}
+
+#cans #playList-show1:hover,aside #playList-hidden:hover{
+	opacity: 0.7;
+}
+.select{
+	color: lightcoral;
+}

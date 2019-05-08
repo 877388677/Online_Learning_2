@@ -31,10 +31,22 @@
 </div>
 
 <script type="text/javascript">
-
+	function setCookie(c_name,value,expiredays){
+		var exdate=new Date()
+		exdate.setDate(exdate.getDate()+expiredays)
+		document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+	}
 	function sub(){								//登录函数
 		var username = $("#username").val();
 		var password = $("#password").val();
+		
+//		sessionStorage.setItem("user",username);
+		 if (username!=null && username!="")
+	    {
+			 setCookie('username',username,365);
+	    }
+		
+		
 		if (username == "" || password == "") {
 			alert('用户名或密码不能为空');
 			return;
