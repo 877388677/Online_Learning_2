@@ -10,17 +10,13 @@
     <link rel="stylesheet" href="./css/styles.css">
 	<link rel="stylesheet" href="./css/style_yang.css">
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
- 
-  <style>
-  /* Make the image fully responsive */
+<style>
   .carousel-inner img {
       width: 100%;
       height: 100%;
   }
-  </style>
-  
+</style>
 
-  
 </head>
 <body class="sidebar-fixed header-fixed">
 <div class="page-wrapper">
@@ -418,70 +414,55 @@
 		 
     </div>
 		
-	<script type="text/javascript">
-		
-	function getCookie(c_name)
-	{  
-	 if (document.cookie.length>0)
-	  {
-	  c_start=document.cookie.indexOf(c_name + "=")
-	  if (c_start!=-1)
-	    { 
-	    c_start=c_start + c_name.length+1 
-	    c_end=document.cookie.indexOf(";",c_start)
-	    if (c_end==-1) c_end=document.cookie.length
-	    return unescape(document.cookie.substring(c_start,c_end))
+<script type="text/javascript">
+function getCookie(c_name){  
+	if (document.cookie.length>0){
+		c_start=document.cookie.indexOf(c_name + "=")
+	    if (c_start!=-1){ 
+	    	c_start=c_start + c_name.length+1 
+	    	c_end=document.cookie.indexOf(";",c_start)
+	   		if (c_end==-1) c_end=document.cookie.length
+	    	return unescape(document.cookie.substring(c_start,c_end))
 	    } 
-	  } 
+	} 
 	return ""
-	}
+}
 
-	function checkCookie(){
-		  
-	}
-//	window.onload=checkCookie;
-	 function findallnotices(){
+function findallnotices(){
+	username=getCookie('username');
+	console.log("user"+username);
+	$.ajax({
+		type: "GET",
+        url: "http://localhost:8080/notices/findAllNotices/",
+		dataType:"json",
+		success: function(data){
+			var jsonObj = data;
+		    console.log("data:"+data);	  
+		    var html="";
+			for(var item in jsonObj.data){
+				var id=jsonObj.data[item].id;
+				var noticename = jsonObj.data[item].noticename;
+				var time = jsonObj.data[item].time;
+				var upname = jsonObj.data[item].upname;
+				var description = jsonObj.data[item].description;
+				html+="<a href='http://localhost:8080/dist/findAllNotices.html'>";
+				html+="   ****"+noticename+"****         "; 
+				html+="</a>"
+			}
+		    var html1=username+"，你好" ;
+			$("#this").html(html1);
+			$("#findNoticesName").html(html);
+		},
+		error:function(){
+			alert("error");
+		}
 		 
-		 username=getCookie('username');
-		 console.log("user"+username);
-		 $.ajax({
-			 type: "GET",
-             url: "http://localhost:8080/notices/findAllNotices/",
-		       dataType:"json",
-		       
-		       success: function(data){
-		    	   var jsonObj = data;
-		    	   
-		    	    console.log("data:"+data);	  
-		    	  
-		    	    var html="";
-					    for(var item in jsonObj.data){
-					    	var id=jsonObj.data[item].id;
-							var noticename = jsonObj.data[item].noticename;
-							var time = jsonObj.data[item].time;
-						    var upname = jsonObj.data[item].upname;
-						    var description = jsonObj.data[item].description;
-						    html+="<a href='http://localhost:8080/dist/findAllNotices.html'>";
-						    html+="   ****"+noticename+"****         "; 
-						    html+="</a>"
-					    }
-		    	    var html1=username+"，你好" ;
-					    $("#this").html(html1);
-				        $("#findNoticesName").html(html);
-		       },
+	});
 		
-		       error:function(){
-				   alert("error");
-			   }
-		 
-		 });
-		
-	 }
-	 window.onload=findallnotices;
-	 
-	</script>	
+}
+window.onload=findallnotices;
+</script>	
 
-  
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script src="./vendor/popper.js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
