@@ -461,6 +461,83 @@ function findallnotices(){
 		
 }
 window.onload=findallnotices;
+
+window.onload=function(){findallnotices();findid();}
+
+//设置Cookie
+function setCookie(c_name,value,expiredays){
+	var exdate=new Date()
+	exdate.setDate(exdate.getDate()+expiredays)
+	document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}
+
+//取得Cookie
+function getCookie(c_name)
+{  
+ if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=")
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1 
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    } 
+  } 
+return ""
+}
+
+function findid(){
+	var user = getCookie('username');
+	console.log("usern:"+username);
+
+	$.ajax({
+		type:"get",
+		url:"http://localhost:8080/user/findAllUser",
+		dataType:"json",
+		data:{
+
+		},
+		success:function(data){
+	//		var  id1 = 0;
+			var jsonObj = data;
+			console.log("data:"+jsonObj.message);
+			for(var item in jsonObj.data){
+				var id=jsonObj.data[item].id;
+				var username1=jsonObj.data[item].username;
+				console.log("id:"+id+"::u1:"+username1+"=====u:"+user);
+				if(user==username1){
+					setCookie('userId',id,365);
+				}
+			}
+		},
+		error:function(data){
+			console.log("error"+data.message);
+		}
+		
+	});
+}
+
+function refresh(){
+	  
+    url = location.href;
+ 
+    console.log(url);
+    var once = url.split("#");
+ 
+    if (once[1] != 1) {
+ 
+        url += "#1";
+ 
+        self.location.replace(url);
+ 
+        window.location.reload();
+ 
+    }
+}
+ 
+setTimeout('refresh()', 500);
 </script>	
 
 <script src="./vendor/jquery/jquery.min.js"></script>

@@ -36,6 +36,8 @@
 		exdate.setDate(exdate.getDate()+expiredays)
 		document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
 	}
+
+	
 	function sub(){								//登录函数
 		var username = $("#username").val();
 		var password = $("#password").val();
@@ -46,7 +48,7 @@
 			 setCookie('username',username,365);
 	    }
 		
-		
+	
 		if (username == "" || password == "") {
 			alert('用户名或密码不能为空');
 			return;

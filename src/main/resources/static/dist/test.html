@@ -31,6 +31,38 @@
 	 </aside>
 	 <button title="展开播放列表" id="playList-show1">&gt;</button>
 </div>
+
+
+
+
+<div id="homework">
+		input--text button--send
+		findAllUserdiscuss By VideoId
+</div>
+<div class="col-md-4" style=" margin-left: 15% ;margin-top: 30px;">
+    <label for="input-group-2">发表我的看法：</label>
+    <div class="input-group">
+       <input type="text" id="mydiscuss" name="input1-group2" class="form-control" 
+
+placeholder="说点什么吧">
+       <span class="input-group-btn">
+       	 <button type="button" onclick="addDiscuss()" class="btn btn-primary"> 发布
+
+</button>
+       </span>
+    </div>
+    <div id="discuss">
+
+    </div>
+</div>
+<div id="discussCan">
+  
+
+
+		findAllAuestion By ChapterId
+		input--answer--save
+
+</div>
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/video.js" ></script>
 <script type="text/javascript">
@@ -107,6 +139,38 @@ function courseName(){
 	   }
   });
 }
+
+
+
+/*讨论*/
+function addDiscuss(){
+	
+	var answer = $("#mydiscuss").val();
+	var video_id=getCookie("courseId");
+	var user_id=getCookie("userId");
+	
+	console.log("answer:"+answer+",,,video:"+video_id+",,,user:"+user_id);
+	
+	$.ajax({
+		type:"post",
+		url:"http://localhost:8080/discuss/saveOrUpdateDiscuss",
+		dataType:"json",
+		data:{
+			"answer":answer,
+			"videoId":video_id,
+			"userId":user_id
+		},
+		
+		success:function(data){
+			
+			alert("success:"+data.message);
+		},
+		error: function (data) {
+	　　　　　alert("data:"+data.message);
+	        }
+	});
+}
+
 </script>
 </body>
 </html>
