@@ -23,8 +23,11 @@ public interface IDiscussService {
 	void batchDelete(Long[] ids) throws Exception;
 	
 	
-	//外键链接查询所有(school_id)
+	//外键链接查询所有
 	List<DiscussVM> selectAll() throws Exception;
+	
+	//根据video_id查询所有
+	List<DiscussVM> selectAllByVideoid(long id) throws Exception;
 	
 
 }

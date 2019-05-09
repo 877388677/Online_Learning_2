@@ -55,4 +55,9 @@ public class DiscussServiceImpl implements IDiscussService{
 		return discussVMMapper.selectAll();
 	}
 
+	@Override
+	public List<DiscussVM> selectAllByVideoid(long id) throws Exception {
+		return discussVMMapper.selectAllByVideoid(id);
+	}
+
 }

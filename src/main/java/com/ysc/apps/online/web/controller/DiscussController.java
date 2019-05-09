@@ -21,6 +21,20 @@ public class DiscussController {
 	@Autowired
 	private IDiscussService discussService;
 	
+	@GetMapping("findAllByVideoid")
+	public MsgResponse findAllByVideoid(@RequestParam long id){
+		try {
+			List<DiscussVM> list = discussService.selectAllByVideoid(id);
+			//返回成功信息
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	
 	@GetMapping("findAllDiscussVM")
 	public MsgResponse findAllDiscussVM(){
 		try {

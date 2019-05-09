@@ -297,23 +297,15 @@
                type: "GET",
                url: "http://localhost:8080/course/findAllCourseVM",
 		       dataType:"json",
-		       success: function(data){
-		    	   
-		    	    console.log(data);	
-		    	    
+		       success: function(data){ 	   
+		    	    console.log(data);		    
 		    	    var jsonObj = data;
-		    	    var str='id'; 
-				     var day= 365;
-		    	  
-		    	   
 				    var html="";
 				    for(var item in  jsonObj.data){
-				    	
 				    	var id=jsonObj.data[item].id;
 						var startTime = jsonObj.data[item].startTime;
 						var name = jsonObj.data[item].name;
 					    var description = jsonObj.data[item].description;
-					     
 					    var html1 = "<p id=''>"+id+"</p>";
 					    html+="<ul style='font-size: 20px'><a onclick='setId("+id+");' href='test.html'>"+name+"</a><ul>"
 					    for(var item1 in jsonObj.data[item].chapter){
@@ -321,17 +313,15 @@
 					    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
 					    	var chapterName = jsonObj.data[item].chapter[item1].description;
 					    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
-					    	
 					    } 
 					    html+="     </ul></li></ul>"
-				    }
-				     
-						    $("#find").html(html);
+				    }   
+					$("#find").html(html);
                },
 			   error:function(){
 				   alert("error");
 			   }
-          });
+         });
     }
 	window.onload = findall;
 	

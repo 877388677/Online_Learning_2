@@ -51,7 +51,7 @@
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/video.js" ></script>
 <script type="text/javascript">
-window.onload=function(){allcourse();courseName();}
+window.onload=function(){allcourse();courseName();findDiscuss();}
 function allcourse(){
 	//var idd=$("#getid").val();
 	var id=getCookie("courseId");
@@ -81,7 +81,7 @@ function allcourse(){
 				    	var videoId = jsonObj.data[item].video[item1].id;
 				    	var videoName = jsonObj.data[item].video[item1].name;
 				    	var videoFile = jsonObj.data[item].video[item1].file;
-				    	html+="<li value="+videoFile+" title="+videoName+">"+videoName+"</li>";
+				    	html+="<li value="+videoFile+" title="+videoName+" videoId="+videoId+" chapterId="+id+">"+videoName+"</li>";
 				    } 
 				    html+="</ul>"
 			    }
@@ -110,12 +110,9 @@ function courseName(){
 		success:function(data){
 			
 			var jsonObj = data;
-	//		console.log("data:"+jsonObj.data);	
-	//		 console.log("msg:"+jsonObj.message);
 			var startTime = jsonObj.data.startTime;
 			var name = jsonObj.data.name;
 		    var description = jsonObj.data.description;
-	//	    console.log("name:"+name);
 		    var html="<h3>"+name+ "</h3>";
 	        $("#getCourse").html(html);
        },
@@ -124,8 +121,43 @@ function courseName(){
 	   }
   });
 }
-/* 查询问题 */
-
+/* 查询讨论 */
+function findDiscuss(){
+	var video_id=getCookie("videoId");
+	
+	console.log("video_id::"+video_id);
+	$.ajax({
+		type:"get",
+		url:"http://localhost:8080/discuss/findAllByVideoid",
+		dataType:"json",
+		data:{
+			"id":video_id
+		},
+		success:function(data){
+			var html = "";
+			var jsonObj = data;
+			for(var item in  jsonObj.data){
+		    	var id=jsonObj.data[item].id;
+				var answer = jsonObj.data[item].answer;
+				
+		//		var html1 = "<p id=''>"+id+"</p>";
+			    html+="<ul style='font-size: 20px'>"+answer+"<ul>"
+			    
+			    for(var item1 in jsonObj.data[item].chapter){
+			    	var username = jsonObj.data[item].chapter[item1].username;
+			    	html+="<li>"+username+"  </li>";
+			    } 
+			    html+="     </ul></li></ul>"
+		    }   
+			$("#discuss").html(html);
+			
+		},
+	   error:function(data){
+		   console.log("查询讨论error---"+data.message);
+	   }
+	});
+	
+}
 
 /*添加讨论*/
 function addDiscuss(){

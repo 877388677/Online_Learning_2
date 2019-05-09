@@ -14,6 +14,12 @@ function getCookie(c_name)
 return ""
 }
 
+function setCookie(c_name,value,expiredays){
+	var exdate=new Date()
+	exdate.setDate(exdate.getDate()+expiredays)
+	document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}
+
 function initVideoList(){
 	
 	var video = document.getElementById("video");
@@ -30,6 +36,7 @@ function initVideoList(){
 			url[i] = lis[i].getAttribute("value");
 			
 	}
+
 	
 	//绑定单击事件
 	for(var i=0;i<lis.length;i++){
@@ -38,6 +45,7 @@ function initVideoList(){
 				for(var j=0;j<lis.length;j++){
 					if(lis[j] == this){
 						video.setAttribute("src",this.getAttribute("value"));
+			//			video.setAttribute("videoId",this.getAttribute("videoId"));
 						video.setAttribute('autoplay','autoplay');
 						this.innerHTML = 'palying '+this.innerHTML;
 						this.className = "select";
@@ -47,9 +55,15 @@ function initVideoList(){
 						lis[j].className = "";
 					}
 				}
-				
+				location.reload();
+			var chapterId=this.getAttribute("chapterId");
+			var videoId=this.getAttribute("videoId");
+			setCookie('chapterId',chapterId,100);
+			setCookie('videoId',videoId,100);
+			console.log(this.getAttribute("value"));  //调试代码
+			console.log(chapterId); 
+			console.log(videoId); 
 			
-//			console.log(this.getAttribute("value"));  //调试代码
 		}
 			
 	}	

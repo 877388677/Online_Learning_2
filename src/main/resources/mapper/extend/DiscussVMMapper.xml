@@ -30,5 +30,7 @@
        select * from discuss where id = #{id}
   </select>
   
-  
+    <select id="selectAllByVideoid" resultMap="DiscussVMResultMap">
+       select * from discuss where video_id = #{video_id}
+  </select>
 </mapper>
