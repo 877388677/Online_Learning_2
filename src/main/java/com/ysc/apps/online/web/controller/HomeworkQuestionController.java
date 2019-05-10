@@ -21,6 +21,19 @@ public class HomeworkQuestionController {
 	@Autowired
 	private IHomeworkQuestionService questionService;
 	
+	@GetMapping("findAllByChapterid")
+	public MsgResponse findAllByChapterid(@RequestParam long id){
+		try {
+			List<HomeworkQuestionVM> list = questionService.selectAllByChapterid(id);
+			//返回成功信息
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	} 
+	
 	@GetMapping("findAllQuestionVM")
 	public MsgResponse findAllQuestionVM(){
 		try {

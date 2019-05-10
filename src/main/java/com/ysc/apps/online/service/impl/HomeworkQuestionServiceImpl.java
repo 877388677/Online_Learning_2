@@ -60,4 +60,9 @@ public class HomeworkQuestionServiceImpl implements IHomeworkQuestionService{
 		return questionVMMapper.selectAll();
 	}
 
+	@Override
+	public List<HomeworkQuestionVM> selectAllByChapterid(long id) throws Exception {
+		return questionVMMapper.selectAllByChapterid(id);
+	}
+
 }

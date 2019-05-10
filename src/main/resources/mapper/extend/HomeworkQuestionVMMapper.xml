@@ -40,5 +40,8 @@
   <select id="query" resultMap="HomeworkQuestionVMResultMap">
       select *  from homework_question  where question like "%"#{name}"%"
     </select>
+     <select id="selectAllByChapterid" resultMap="HomeworkQuestionVMResultMap">
+      select *  from homework_question  where chapter_id = #{id}
+    </select>
   
 </mapper>

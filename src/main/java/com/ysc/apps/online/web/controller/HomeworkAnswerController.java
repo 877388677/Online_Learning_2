@@ -50,13 +50,13 @@ public class HomeworkAnswerController {
 	}
 
 	 @PostMapping("saveOrUpdateAnswer")
-	  public String saveOrUpdateAnswer(HomeworkAnswer answer){
+	  public MsgResponse saveOrUpdateAnswer(HomeworkAnswer answer){
 	  	try {
 				answerService.saveOrUpdate(answer);
-				return "保存成功！";
+				return MsgResponse.success("success", null);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "保存失败"+e.getMessage();
+				return MsgResponse.error("error"+e.getMessage());
 			}
 	  }
 

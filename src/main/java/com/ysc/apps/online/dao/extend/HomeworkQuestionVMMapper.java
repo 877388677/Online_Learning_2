@@ -16,5 +16,7 @@ public interface HomeworkQuestionVMMapper {
 	
 	//按关键字查找
 	List<HomeworkQuestionVM> query(String keywords);
-
+	
+	//按章节ChapterId查询所有
+	List<HomeworkQuestionVM> selectAllByChapterid(Long id);
 }

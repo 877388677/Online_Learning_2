@@ -24,5 +24,7 @@ public interface IHomeworkQuestionService {
 	
 	//外键链接查询所有(school_id)
 	List<HomeworkQuestionVM> selectAll() throws Exception;
+	
+	List<HomeworkQuestionVM> selectAllByChapterid(long id) throws Exception;
 
 }
