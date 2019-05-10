@@ -55,7 +55,7 @@ function initVideoList(){
 						lis[j].className = "";
 					}
 				}
-				location.reload();
+			//	location.reload();
 			var chapterId=this.getAttribute("chapterId");
 			var videoId=this.getAttribute("videoId");
 			setCookie('chapterId',chapterId,100);

@@ -51,10 +51,7 @@
 <script type="text/javascript">
 window.onload=function(){allcourse();courseName();findDiscuss();}
 function allcourse(){
-	//var idd=$("#getid").val();
 	var id=getCookie("courseId");
-//	console.log("cookie->courseId:"+id);
-//	alert("haha"+idd);
  	$.ajax({
 	       type: "GET",
 	       url: "http://localhost:8080/courseChapter/findAllChapterByCourseIdVM",

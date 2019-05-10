@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Carbon - Admin Template</title>
+    <title>课程相关</title>
     <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -12,300 +12,176 @@
 </head>
 <body class="sidebar-hidden header-fixed">
 <div class="page-wrapper">
+  <!-- 顶栏 -->
     <nav class="navbar page-header">
-        <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
-            <i class="fa fa-bars"></i>
-        </a>
-
         <a class="navbar-brand" href="#">
             <img src="./imgs/logo.png" alt="logo">
         </a>
 
         <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars">导航栏</i>
         </a>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-            </li>
-
-            <li class="nav-item d-md-down-none">
-                <a href="#">
-                    <i class="fa fa-envelope-open"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="./imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
-                    <span class="small ml-1 d-md-down-none">John Smith</span>
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header">Account</div>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-user"></i> Profile
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-envelope"></i> Messages
-                    </a>
-
-                    <div class="dropdown-header">Settings</div>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-bell"></i> Notifications
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-wrench"></i> Settings
-                    </a>
-
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-lock"></i> Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
     </nav>
 
     <div class="main-container">
+    <!-- 左侧导航 -->
         <div class="sidebar">
             <nav class="sidebar-nav">
                 <ul class="nav">
-                    <li class="nav-title">Navigation</li>
+                    <li class="nav-title">课程名-getCookie</li>
 
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link">
-                            <i class="icon icon-speedometer"></i> Dashboard
+                        <a href="course-homework.html" class="nav-link">
+                            <i class="icon icon-speedometer"></i> homework-作业区
                         </a>
                     </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-target"></i> Layouts <i class="fa fa-caret-left"></i>
+					<li class="nav-item">
+                        <a href="course-discuss.html" class="nav-link">
+                            <i class="icon icon-speedometer"></i> discuss-讨论区
                         </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="layouts-normal.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Normal
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="layouts-fixed-sidebar.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Fixed Sidebar
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="layouts-fixed-header.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Fixed Header
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="layouts-hidden-sidebar.html" class="nav-link active">
-                                    <i class="icon icon-target"></i> Hidden Sidebar
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-energy"></i> UI Kits <i class="fa fa-caret-left"></i>
-                        </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="alerts.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Alerts
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="buttons.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Buttons
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="cards.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Cards
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="modals.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Modals
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="tabs.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Tabs
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="progress-bars.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Progress Bars
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="widgets.html" class="nav-link">
-                                    <i class="icon icon-energy"></i> Widgets
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-graph"></i> Charts <i class="fa fa-caret-left"></i>
-                        </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="chartjs.html" class="nav-link">
-                                    <i class="icon icon-graph"></i> Chart.js
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="forms.html" class="nav-link">
-                            <i class="icon icon-puzzle"></i> Forms
+  					<li class="nav-item">
+                        <a href="course-download.html" class="nav-link">
+                            <i class="icon icon-speedometer"></i> document-文件下载
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="tables.html" class="nav-link">
-                            <i class="icon icon-grid"></i> Tables
+                        <a href="#" class="nav-link">
+                            <i class="icon icon-puzzle"></i> Share-课程分享
                         </a>
                     </li>
 
-                    <li class="nav-title">More</li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-umbrella"></i> Pages <i class="fa fa-caret-left"></i>
+                    <li class="nav-item">
+                        <a href="test.html" class="nav-link">
+                            <i class="icon icon-grid"></i> 返回视频页
                         </a>
-
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a href="blank.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Blank Page
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="login.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Login
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="register.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Register
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="invoice.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Invoice
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="404.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> 404
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="500.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> 500
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="settings.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Settings
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </nav>
         </div>
+       
+        <div class="content">
+        <!-- 管理员公告跑马灯 -->
+       		<div>
+       			<!-- 公告跑马灯 -->	
+				<marquee id="affiche" 
+						 align="middle" 
+						 behavior="scroll"
+						 bgcolor="#C8C8C8 " 
+						 direction="left" 
+						 height="30" width="70%" 
+						 hspace="0"  vspace="30" 
+						 loop="-1" 
+						 scrollamount="5" 
+						 scrolldelay="100" 
+						 onMouseOut="this.start()" 
+						 onMouseOver="this.stop()"> 
+				
+				<div id="findNoticesName"></div>
 
-        <div class="content" style="height: 5000px;">
-           <div id="video_container" style=" width: 100%; height: 500px">
-			<div id="video" style="background-color: aquamarine ; height: 600px ; width:70% ; float: left ; margin-left: 40px">
-			<h1>Chapter-Name</h1>
-			<p>description</p>
-			<video controls>
-			  <source src="./videos/P1.mp4" type="video/mp4">
-			</video>
-			 
-			
+				</marquee>
+       		</div>
+        <div id="saveDiscuss">
+	   		<div id="courseselect"></div>
+			<label for="input-group-2">发表我的看法：</label>
+			<div class="input-group">
+			   <input type="text" id="mydiscuss" name="input1-group2" class="form-control" placeholder="说点什么吧">
+			   <span class="input-group-btn">
+			       <button type="button" onclick="addDiscuss()" class="btn btn-primary"> 发布</button>
+			   </span>
 			</div>
-				<input type="text" id="getid"> 
-			<input type="button" value="a" onclick="al()">
-			<div class="col-3 col-s-3 menu" id="video_list" style="background-color: bisque ; height: 550px ; width: 20% ; float: left ;margin-left: 40px">
-				
-			</div>
+			<div id="discuss" style="height: 200px;"> </div>
 		</div>
-			
-			<div id="discuss" style="height: 100px ; width: 70%; margin-left: 40px ; background-color:cadetblue; margin-top: 20px">
-				
-				
-				findAllAuestion By ChapterId
-				input--answer--save
-				
-			
-			</div>
-			
-			<div id="homework" style="height: 100px ; width: 70%; margin-left: 40px ; background-color:cadetblue; margin-top: 20px">
-				input--text button--send
-				findAllUserdiscuss By VideoId
-			</div>
-			
-			
+       
+       <div id="alldiscuss">
+       
+       
+       </div>
         </div>
+        
     </div>
 </div>
 <script type="text/javascript">
+window.onload=function(){selectVideo();findallnotices();}
 
-function al(){
-	
-	var idd=$("#getid").val();
-//	alert("haha"+idd);
+function findallnotices(){
+//	username=getCookie('username');
+//	console.log("user"+username);
+	$.ajax({
+		type: "GET",
+        url: "http://localhost:8080/notices/findAllNotices/",
+		dataType:"json",
+		success: function(data){
+			var jsonObj = data;
+		    console.log("data:"+data);	  
+		    var html="";
+			for(var item in jsonObj.data){
+				var id=jsonObj.data[item].id;
+				var noticename = jsonObj.data[item].noticename;
+				var time = jsonObj.data[item].time;
+				var upname = jsonObj.data[item].upname;
+				var description = jsonObj.data[item].description;
+				html+="<a href='http://localhost:8080/dist/findAllNotices.html'>";
+				html+=""+noticename+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"; 
+				html+="</a>"
+			}
+	//	    var html1=username+"，你好" ;
+	//		$("#this").html(html1);
+			$("#findNoticesName").html(html);
+		},
+		error:function(){
+			alert("error");
+		}
+		 
+	});
+		
+}
 
-	
+
+function setCookie(c_name,value,expiredays){
+	var exdate=new Date()
+	exdate.setDate(exdate.getDate()+expiredays)
+	document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}
+function getCookie(c_name)
+{  
+ if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=")
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1 
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    } 
+  } 
+return ""
+}
+function getselect(){
+	 var options=$("#myselect option:selected"); 
+	 console.log("options---"+options.text());
+//	 alert(options.val());	 
+	 var courseId=options.val();
+	 setCookie('courseId',courseId,365);
+	 
+}
+
+function selectVideo(){
+	var id=getCookie("courseId");
+	console.log("cookie------>courseId:"+id);
  	$.ajax({
 	       type: "GET",
 	       url: "http://localhost:8080/courseChapter/findAllChapterByCourseIdVM",
 	       dataType:"json",
 	       data:{
-	    	 "id":idd  
+	    	 "id":id
 	       },
 	       success: function(data){
 	    	    console.log(data);	   
 	    	    var jsonObj = data;
-	    		console.log(jsonObj);
-			     var html="";
+		 		var html1="<select  id='myselect'>"
 			    for(var item in jsonObj.data){
 			    	
 			    	var id=jsonObj.data[item].id;
@@ -313,25 +189,52 @@ function al(){
 					var name = jsonObj.data[item].name;
 				    var description = jsonObj.data[item].description;
 				    var document = jsonObj.data[item].document;
-				    html+="<h5>*"+chapter+":"+name+"</h5><ul>"
+				   
 				    for(var item1 in jsonObj.data[item].video){
 				    	var videoId = jsonObj.data[item].video[item1].id;
 				    	var videoName = jsonObj.data[item].video[item1].name;
 				    	var videoFile = jsonObj.data[item].video[item1].file;
-				    	html+="<li >"+videoName+"  </li>";
-				    	
+				    	html1+=" <option value ="+videoId+">"+videoName+"</option>"
 				    } 
-				    html+="</ul>"
+					
 			    }
-			     
-					    $("#video_list").html(html); 
-     },
+		 html1+="</select>"  
+			 $("#courseselect").html(html1);
+           },
 		   error:function(){
 			   alert("error");
 		   }
-});  
+	}); 
 }
 
+function addDiscuss(){
+	getselect();
+	var answer = $("#mydiscuss").val();
+	var video_id=getCookie("courseId");
+	var user_id=getCookie("userId");
+	
+	console.log("answer:"+answer+",,,video:"+video_id+",,,user:"+user_id);
+	
+	$.ajax({
+		type:"post",
+		url:"http://localhost:8080/discuss/saveOrUpdateDiscuss",
+		dataType:"json",
+		data:{
+			"answer":answer,
+			"videoId":video_id,
+			"userId":user_id
+		},
+		
+		success:function(data){
+			
+			alert("success:"+data.message);
+		},
+		error: function (data) {
+	　　　　　alert("data:"+data.message);
+	        }
+	});
+	
+}
 
 </script>
 
