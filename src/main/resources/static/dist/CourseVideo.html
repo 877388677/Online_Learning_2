@@ -82,6 +82,7 @@
 
 				</marquee>
        		</div>
+       		
         <div id="saveDiscuss">
 	   		<div id="courseselect"></div>
 			<label for="input-group-2">发表我的看法：</label>
@@ -91,23 +92,37 @@
 			       <button type="button" onclick="addDiscuss()" class="btn btn-primary"> 发布</button>
 			   </span>
 			</div>
-			<div id="discuss" style="height: 200px;"> </div>
+<!-- 			<div id="discuss" style="height: 200px;"> </div> -->
 		</div>
        
-       <div id="alldiscuss">
-       
-       
+       <div class="card-body">
+           <div class="table-responsive">
+                <table class="table table-hover">
+                     <thead>
+                        <tr>
+                           <th>Username</th>
+                           <th>Video_id</th>
+                           <th>detail</th>
+                        </tr>
+                     </thead>
+                     <tbody id="allDiscuss1">
+                      <!--   <tr>
+                           <td>1</td>
+                           <td class="text-nowrap">Samsung Galaxy S8</td>
+                           <td>31,589</td>
+                        </tr>     -->     
+                     </tbody>
+                </table>
+           </div>
        </div>
+     
         </div>
-        
     </div>
 </div>
 <script type="text/javascript">
-window.onload=function(){selectVideo();findallnotices();}
+window.onload=function(){selectVideo();findallnotices();findDiscuss();}
 
 function findallnotices(){
-//	username=getCookie('username');
-//	console.log("user"+username);
 	$.ajax({
 		type: "GET",
         url: "http://localhost:8080/notices/findAllNotices/",
@@ -126,8 +141,6 @@ function findallnotices(){
 				html+=""+noticename+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"; 
 				html+="</a>"
 			}
-	//	    var html1=username+"，你好" ;
-	//		$("#this").html(html1);
 			$("#findNoticesName").html(html);
 		},
 		error:function(){
@@ -162,7 +175,6 @@ return ""
 function getselect(){
 	 var options=$("#myselect option:selected"); 
 	 console.log("options---"+options.text());
-//	 alert(options.val());	 
 	 var courseId=options.val();
 	 setCookie('courseId',courseId,365);
 	 
@@ -234,6 +246,39 @@ function addDiscuss(){
 	        }
 	});
 	
+}
+
+
+function findDiscuss(){
+	
+	var video_id=getCookie("videoId");
+	
+	console.log("video_id::"+video_id);
+	$.ajax({
+		type:"get",
+		url:"http://localhost:8080/discuss/findAllByVideoid",
+		dataType:"json",
+		data:{
+			"id":video_id
+		},
+		success:function(data){
+			var html="";
+			var jsonObj = data;
+			for(var item in  jsonObj.data){
+		    	var id=jsonObj.data[item].id;
+				var answer = jsonObj.data[item].answer;
+				var username = jsonObj.data[item].user.username;
+
+			    html+="<tr><td width='124'>user:"+username+"</td><td width='300'>";
+			    html+="video:"+video_id+"</td><td>"+answer+"</td></tr>"
+		    } 
+			 $("#allDiscuss1").html(html);
+			
+		},
+	   error:function(data){
+		   console.log("查询讨论error---"+data.message);
+	   }
+	});
 }
 
 </script>
