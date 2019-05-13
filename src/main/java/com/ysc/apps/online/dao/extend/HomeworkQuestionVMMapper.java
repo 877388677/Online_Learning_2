@@ -19,4 +19,7 @@ public interface HomeworkQuestionVMMapper {
 	
 	//按章节ChapterId查询所有
 	List<HomeworkQuestionVM> selectAllByChapterid(Long id);
+	
+	
+	List<HomeworkQuestionVM> selectAllByCourseid(Long id);
 }

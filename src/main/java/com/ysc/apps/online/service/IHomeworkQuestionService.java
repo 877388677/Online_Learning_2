@@ -26,5 +26,7 @@ public interface IHomeworkQuestionService {
 	List<HomeworkQuestionVM> selectAll() throws Exception;
 	
 	List<HomeworkQuestionVM> selectAllByChapterid(long id) throws Exception;
+	
+	List<HomeworkQuestionVM> selectAllByCourseid(long id) throws Exception;
 
 }

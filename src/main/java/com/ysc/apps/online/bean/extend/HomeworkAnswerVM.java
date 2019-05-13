@@ -8,8 +8,8 @@ public class HomeworkAnswerVM {
 	private Long id;
 	private String answer;
 	private String state;
-	private Long question_id;
-	private Long user_id;
+	private Long questionId;
+	private Long userId;
 	
 	private HomeworkQuestion question;
 	private User user;
@@ -26,17 +26,19 @@ public class HomeworkAnswerVM {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public Long getQuestion_id() {
-		return question_id;
+
+	
+	public Long getQuestionId() {
+		return questionId;
 	}
-	public void setQuestion_id(Long question_id) {
-		this.question_id = question_id;
+	public void setQuestionId(Long questionId) {
+		this.questionId = questionId;
 	}
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public HomeworkQuestion getQuestion() {
 		return question;

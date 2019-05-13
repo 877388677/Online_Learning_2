@@ -16,6 +16,7 @@
       <collection column="id" property="answer" javaType="ArrayList"
 			ofType="com.ysc.apps.online.bean.HomeworkAnswer" select="selectAnswerByQuestionId">
 	  </collection>
+	  
       
   </resultMap>
  
@@ -43,5 +44,4 @@
      <select id="selectAllByChapterid" resultMap="HomeworkQuestionVMResultMap">
       select *  from homework_question  where chapter_id = #{id}
     </select>
-  
 </mapper>
