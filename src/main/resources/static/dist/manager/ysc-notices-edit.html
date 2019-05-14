@@ -104,6 +104,8 @@ function getCookie(c_name)
 return ""
 }
 function notice_submit(){	
+	window.location.reload()
+	
 	var id = getCookie("noticeId");
 	
 	console.log("id:"+id);
@@ -147,6 +149,7 @@ function notice_submit(){
 	});
 	layer_close()
 }
+
 
 </script>
 <!--/请在上方写此页面业务相关的脚本-->

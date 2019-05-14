@@ -66,4 +66,14 @@ public class UserServiceImpl implements IUserService{
 		
 	}
 
+	@Override
+	public void saveOrUpdate(User user) throws Exception {
+		if (user.getId()!=null) {
+			userMapper.updateByPrimaryKey(user);
+		} else {
+			userMapper.insert(user);
+		}
+		
+	}
+
 }

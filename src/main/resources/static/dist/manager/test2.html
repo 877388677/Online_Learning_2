@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="./vendor/jquery/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -60,11 +60,11 @@
 		</div>
 	</form>
 </article>
+		<button onClick="user_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 
-<input type="button" value="getRadioBox" onclick="notice_submit()">
 
-
-
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript">
 
 function getCookie(c_name){  
@@ -80,13 +80,11 @@ function getCookie(c_name){
 	return ""
 }
 function notice_submit(){	
-	var courseid=getCookie("courseId");
 	var id = getCookie("studentId");
 	console.log("id:"+id);
-	console.log("courseid:"+courseid);
 	
-	var username = $("#username").val();
-	console.log("username:"+username);
+ 	var username = $("#username").val();
+	console.log("username:"+username); 
 	
 	var password = $("#password").val();
 	console.log("password:"+password);
@@ -101,9 +99,9 @@ function notice_submit(){
 	var type = options.val();
 	console.log("type:"+type);
 	
-	/* $.ajax({
+	 $.ajax({
 		type:"post",
-		url:"http://localhost:8080/notices/saveOrupdateNotice",
+		url:"http://localhost:8080/user/saveOrupdateUser",
 		data: {
 			"id":id,
 			"username": username,
@@ -126,7 +124,7 @@ function notice_submit(){
 		}
 		
 	});
-	layer_close() */
+	layer_close() 
 } 
 </script>
 </body>

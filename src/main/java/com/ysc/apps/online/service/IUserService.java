@@ -26,5 +26,7 @@ public interface IUserService {
 	
 	//批量删除
 	void batchDelete(List<Long> ids) throws Exception; 
+	
+	void saveOrUpdate(User user) throws Exception;
 }
 

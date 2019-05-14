@@ -272,21 +272,22 @@ function article_add(title,url,w,h){
  */
  
  function edit(id){
-	
-	 article_edit('公告编辑','ysc-notices-edit.html',id);
 	 setCookie("noticeId",id,300);
+	 
+	 article_edit('公告编辑','ysc-notices-edit.html',id);
+	
 	 
 }
  
  function article_edit(title,url,id,w,h){
+
 		var index = layer.open({
 			type: 2,
 		 	title: title,
 			content: url 
 		});
 		layer.full(index); 
-		
-	//	alert(title+"---yes---"+url+"---yes---"+id); 
+
 	}
 /*资讯-删除*/
 function article_del(obj,id){

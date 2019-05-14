@@ -36,11 +36,35 @@ public class UserController {
 	}
 	
 	
+	@PostMapping("/saveOrupdateUser")
+	public MsgResponse saveOrUpdate(User user){
+		if (user.getId()!=null){
+			try {
+				userService.saveOrUpdate(user);
+				return MsgResponse.success("success", null);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return MsgResponse.error(e.getMessage());
+			}
+		}
+		else{
+			try {
+				userService.saveOrUpdate(user);
+				return MsgResponse.success("success", null);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return MsgResponse.error(e.getMessage());
+			}
+		}
+	}
+	
+	
+	
 	@PostMapping("register")
 	public MsgResponse register(User user){
 		try {
 			userService.register(user);
-			System.out.println(MsgResponse.success("success", null));
+		//	System.out.println(MsgResponse.success("success", null));
 			return MsgResponse.success("success", null);
 		} catch (Exception e) {
 			e.printStackTrace();
