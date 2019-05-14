@@ -12,44 +12,35 @@
 <body>
 <button class="btn btn-primary" ><a href="findAllCourse.html">返回</a></button>
 <input style="display:none;" type="text" id="getid"><input style="display:none;" type="button" value="a" onclick="al()">
-<div id="getCourse">
 
-	
+<div id="getCourse"></div>
 
+
+<div class="dropdown" style="float:right;">
+  <button class="dropbtn">讨论与课后作业</button>
+  <div class="dropdown-content">
+    <a href="course-discuss.html">讨论</a>
+    <a href="course-homework.html">课后作业</a>
+    <a href="#">课件下载</a>
+  </div>
 </div>
-
 
 <div id="cans">
-	  <video controls="controls" id="video"　src="" poster="" height="500px" width="500px"></video>
-	  <aside id="playList">
+    <video controls="controls" id="video"　src="" poster=""  height="500px" width="500px"></video>
+	<aside id="playList">
 		<p style="color:#FFEFD5 ; font-size:20px ; background-color: #B22222">播放列表</p> 
 		<div id="vlist">
-		           <li value="#" title="暂无视频">暂无视频</li>
-				   <!-- <li value="videos/P1.mp4" title="进球瞬间">进球瞬间</li>
-				   <li value="videos/P3.mp4" title="进球瞬间">进球瞬间</li> -->
+		       <ul>  <li value="#" title="暂无视频">暂无视频</li> </ul>  
 		</div>
-			<!-- button title="展开播放列表" id="playList-show"> 展开播放列表 </button-->
 		<button title="收起播放列表" id="playList-hidden"> &lt; </button>
-	 </aside>
-	 <button title="展开播放列表" id="playList-show1">&gt;</button>
-</div>
-<div id="homework">
-</div>
-<div class="col-md-4" style=" margin-left: 15% ;margin-top: 30px;">
-    <label for="input-group-2">发表我的看法：</label>
-    <div class="input-group">
-       <input type="text" id="mydiscuss" name="input1-group2" class="form-control" placeholder="说点什么吧">
-       <span class="input-group-btn">
-       	 <button type="button" onclick="addDiscuss()" class="btn btn-primary"> 发布</button>
-       </span>
-    </div>
-    <div id="discuss" style="height: 200px;"> </div>
+	</aside>
+	<button title="展开播放列表" id="playList-show1">&gt;</button>
 </div>
 
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/video.js" ></script>
 <script type="text/javascript">
-window.onload=function(){allcourse();courseName();findDiscuss();}
+window.onload=function(){allcourse();courseName();}
 function allcourse(){
 	var id=getCookie("courseId");
  	$.ajax({
@@ -116,72 +107,7 @@ function courseName(){
 	   }
   });
 }
-/* 查询讨论 */
-function findDiscuss(){
-	var video_id=getCookie("videoId");
-	
-	console.log("video_id::"+video_id);
-	$.ajax({
-		type:"get",
-		url:"http://localhost:8080/discuss/findAllByVideoid",
-		dataType:"json",
-		data:{
-			"id":video_id
-		},
-		success:function(data){
-			var html = "";
-			var jsonObj = data;
-			for(var item in  jsonObj.data){
-		    	var id=jsonObj.data[item].id;
-				var answer = jsonObj.data[item].answer;
-				
-		//		var html1 = "<p id=''>"+id+"</p>";
-			    html+="<ul style='font-size: 20px'>"+answer+"<ul>"
-			    
-			    for(var item1 in jsonObj.data[item].chapter){
-			    	var username = jsonObj.data[item].chapter[item1].username;
-			    	html+="<li>"+username+"  </li>";
-			    } 
-			    html+="     </ul></li></ul>"
-		    }   
-			$("#discuss").html(html);
-			
-		},
-	   error:function(data){
-		   console.log("查询讨论error---"+data.message);
-	   }
-	});
-	
-}
 
-/*添加讨论*/
-function addDiscuss(){
-	
-	var answer = $("#mydiscuss").val();
-	var video_id=getCookie("courseId");
-	var user_id=getCookie("userId");
-	
-	console.log("answer:"+answer+",,,video:"+video_id+",,,user:"+user_id);
-	
-	$.ajax({
-		type:"post",
-		url:"http://localhost:8080/discuss/saveOrUpdateDiscuss",
-		dataType:"json",
-		data:{
-			"answer":answer,
-			"videoId":video_id,
-			"userId":user_id
-		},
-		
-		success:function(data){
-			
-			alert("success:"+data.message);
-		},
-		error: function (data) {
-	　　　　　alert("data:"+data.message);
-	        }
-	});
-}
 
 </script>
 </body>

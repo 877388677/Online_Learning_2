@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 	<link rel="stylesheet" href="./css/style_yang.css">
+	<link rel="stylesheet" href="css/style-notice.css">
 </head>
 <body class="sidebar-fixed header-fixed">
 <div class="page-wrapper">
@@ -269,15 +270,8 @@
 				</div>	
 				
 			</ul>
-			<br>
-			
-                 <div id="findkey" style="background-color: chocolate ; color: white" >
-                  	
-                  </div>
-                  <h3 style="text-shadow: 5px 5px 5px #FF0000">所有课程</h3>	
-                  <div id="find">
-                  	
-                  </div>
+       
+          <div class="container" id="find"></div>
 						
         </div>
     </div>
@@ -307,14 +301,14 @@
 						var name = jsonObj.data[item].name;
 					    var description = jsonObj.data[item].description;
 					    var html1 = "<p id=''>"+id+"</p>";
-					    html+="<ul style='font-size: 20px'><a onclick='setId("+id+");' href='test.html'>"+name+"</a><ul>"
+					    html+="<dl><dt><a onclick='setId("+id+");' href='test.html'>"+name+"</a></dt><dd>"
 					    for(var item1 in jsonObj.data[item].chapter){
 					    	var chapterId = jsonObj.data[item].chapter[item1].id;
 					    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
 					    	var chapterName = jsonObj.data[item].chapter[item1].description;
-					    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
+					    	html+="<p>"+chapterCha+"："+chapterName+"  </p>";
 					    } 
-					    html+="     </ul></li></ul>"
+					    html+=" </dd></dl>"
 				    }   
 					$("#find").html(html);
                },
@@ -350,19 +344,19 @@
 				var name = jsonObj.data[item].name;
 			    var description = jsonObj.data[item].description;
 			    var html="<h2>课程相关搜索:"+keyword+ "</h2>";
-			    html+="<ul style='font-size: 20px'>"+name+"<ul>"
+			    html+="<dl><dt><a onclick='setId("+id+");' href='test.html'>"+name+"</a></dt><dd>"
 			    for(var item1 in jsonObj.data[item].chapter){
 			    	console.log("data.chapters:"+jsonObj.data[item].chapter[item1]);
 			        var chapterId = jsonObj.data[item].chapter[item1].id;
 			    	var chapterCha = jsonObj.data[item].chapter[item1].chapter;
 			    	var chapterName = jsonObj.data[item].chapter[item1].description;
-			    	html+="<li style='font-size: 16px'>"+chapterCha+"："+chapterName+"  </li>";
+			    	html+="<p>"+chapterCha+"："+chapterName+"  </p>";
 			    } 
-			    html+="     </ul></li></ul>"
+			    html+=" </dd></dl>"
 			    
 					
 				}
-			        $("#findkey").html(html);
+			        $("#find").html(html);
 	       },
 		   error:function(){
 			   alert("error");

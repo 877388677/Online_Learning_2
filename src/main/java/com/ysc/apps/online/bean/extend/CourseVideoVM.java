@@ -10,7 +10,7 @@ public class CourseVideoVM {
 	private Long id;
 	private String name;
 	private String file;
-	private Long Chapter_id;
+	private Long chapterId;
 	private CourseChapter courseChapter;
 	
 	private List<Discuss> discuss;
@@ -27,11 +27,12 @@ public class CourseVideoVM {
 	public void setFile(String file) {
 		this.file = file;
 	}
-	public Long getChapter_id() {
-		return Chapter_id;
+
+	public Long getChapterId() {
+		return chapterId;
 	}
-	public void setChapter_id(Long chapter_id) {
-		Chapter_id = chapter_id;
+	public void setChapterId(Long chapterId) {
+		this.chapterId = chapterId;
 	}
 	public CourseChapter getCourseChapter() {
 		return courseChapter;

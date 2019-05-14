@@ -10,7 +10,7 @@ public class HomeworkQuestionVM {
 	private Long id;
 	private String question;
 	private String correctAnswer;
-	private Long chapter_id;
+	private Long chapterId;
 	
 	private CourseChapter chapter;    //多对一
 	private List<HomeworkAnswer> answer;    //一对多
@@ -27,12 +27,11 @@ public class HomeworkQuestionVM {
 		this.question = question;
 	}
 
-
-	public Long getChapter_id() {
-		return chapter_id;
+	public Long getChapterId() {
+		return chapterId;
 	}
-	public void setChapter_id(Long chapter_id) {
-		this.chapter_id = chapter_id;
+	public void setChapterId(Long chapterId) {
+		this.chapterId = chapterId;
 	}
 	public CourseChapter getChapter() {
 		return chapter;

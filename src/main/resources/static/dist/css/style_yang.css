@@ -272,3 +272,16 @@ aside #playList-hidden {
 .select{
 	color: lightcoral;
 }
+
+
+#find{
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 50px;
+}
+
+#accordion{
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 50px;
+}

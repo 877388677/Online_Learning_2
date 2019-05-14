@@ -64,15 +64,27 @@
 		   		<div id="questionSelect"></div>
 				<label for="input-group-2">发表我的看法：</label>
 				<div class="input-group">
-				   <input type="text" id="myAnswer" name="input1-group2" class="form-control" placeholder="说出你的答案">
+				   <input type="text" id="myAnswer" autocomplete="off" name="input1-group2" class="form-control" placeholder="说出你的答案">
 				   <span class="input-group-btn">
 				       <button type="button" onclick="saveAnswer()" class="btn btn-primary"> 发布</button>
 				   </span>
 				</div>
 			</div>
-			<div id="wodeAnswer">
-			   
-			</div>
+			   <div class="card-body">
+	         			<div class="table-responsive">
+			                <table class="table table-hover">
+			                     <thead>
+			                        <tr>
+			                           <th>相关问题</th>
+			                           <th>我的答案</th>
+			                        </tr>
+			                     </thead>
+			                     <tbody id="wodeAnswer">
+			                    
+			                     </tbody>
+			                </table>
+			           </div>
+	    	    </div>
 			
        		<div class="col-md-4">
    				<div class="card">
@@ -104,9 +116,48 @@
 
 <script src="./vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-window.onload=function(){findAllQuestion();}
-  function findAllQuestion(){
+window.onload=function(){findAllQuestion();findAllAnswer()}
+
+  function findAllAnswer(){
 	  var user_id=getCookie("userId");
+	  $.ajax({
+		  type:"get",
+		  url:"http://localhost:8080/homeworkAnswer/findAllAnswerVM",
+		  dataType:"json",
+		  data:{
+			  "userId":user_id
+		  },
+		  
+		  success:function(data){
+			  var html="";
+			  var jsonObj = data;
+				for(var item in  jsonObj.data){
+			    	var id=jsonObj.data[item].id;
+					var answer = jsonObj.data[item].answer;
+					var state = jsonObj.data[item].state;
+				    var question = jsonObj.data[item].question.question;
+				    var userId = jsonObj.data[item].user.id;
+				    var user = jsonObj.data[item].user.username;
+				    
+				    if(user_id==userId){
+				    	html+="<tr><td>"+question+"</td><td>"+answer+"</td></tr>";
+				    }
+				
+				}
+				 $("#wodeAnswer").html(html);
+				
+		  },
+		  error:function(data){
+			  console.log(data.message);
+		  }
+		  
+	  });
+  }
+
+
+
+  function findAllQuestion(){
+	
 	   $.ajax({
 		   type:"get",
 			url:"http://localhost:8080/homeworkQuestion/findAllQuestionVM",
@@ -115,7 +166,7 @@ window.onload=function(){findAllQuestion();}
 			success:function(data){
 				var html="";
 				var html1="<select  id='myselect'>"
-				var html2="<ul>"
+	
 				var jsonObj = data;
 				for(var item in  jsonObj.data){
 			    	var id=jsonObj.data[item].id;
@@ -123,23 +174,12 @@ window.onload=function(){findAllQuestion();}
 					var correctAnswer = jsonObj.data[item].correctAnswer;
 					var chapterName = jsonObj.data[item].chapter.name;
 					var chapter = jsonObj.data[item].chapter.chapter;
-					for(var item1 in jsonObj.data[item].answer){
-						var answer = jsonObj.data[item].answer[item1].answer;
-						var userId = jsonObj.data[item].answer[item1].userId;
-						console.log("我的answer:"+answer+"我的Id ："+userId);
-						if(user_id == userId){
-							var html2 = "<li>"+answer+"</li>"
-							
-						}
-					}
-					
+
 			    	html1+=" <option value ="+id+">"+question+"</option>"
 				    html+="<tr><td width='250'>"+question+"</td><td width='500'>";
 				    html+=correctAnswer+"</td><td>"+chapterName+"-----"+chapter+"</td></tr>"
 			    } 
 				html1+="</select>"  
-				html2+="</ul>"
-				$("#wodeAnswer").html(html2);
 			    $("#questionSelect").html(html1);
 				$("#findAllQuestion").html(html);
 			},
@@ -198,12 +238,15 @@ window.onload=function(){findAllQuestion();}
 			
 			success:function(data){
 				
-				alert("success:"+data.message);
+				alert(data.message);
+				
+				window.location.reload();
 			},
 			error: function (data) {
 		　　　　　alert("data:"+data.message);
 		        }
 		});
+		
 	}
 	
 

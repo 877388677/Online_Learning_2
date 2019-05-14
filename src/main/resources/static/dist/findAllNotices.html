@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Carbon - Admin Template</title>
+    <title>所有公告</title>
     <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 	<link rel="stylesheet" href="./css/style_yang.css">
+	<link rel="stylesheet" href="css/style-notice.css">
 </head>
 <body class="sidebar-fixed header-fixed">
 <div class="page-wrapper">
@@ -258,26 +259,21 @@
 			  <li class="top_li"><a href="http://localhost:8080/dist/findAllTeacher.html">名师堂</a></li>
 			   <li class="top_li"><a class="active" href="http://localhost:8080/dist/findAllNotices.html">公告</a></li>
 			  <li class="top_li"><a href="#about">关于</a></li>	
-				<div style="float:right;  margin-top: 5px">
+			 <div style="float:right;  margin-top: 5px">
 				<input type="text" class="notice_input" placeholder="搜索公告"  />
 				<button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
 			</div>	
-				
-			</ul>
 			
-		<br>
-			<h3 style="text-shadow: 5px 5px 5px #FF0000">所有公告</h3>
-			<div  id="accordion">
-	
-			</div>
+		</ul>
 			
-			
+		<div class="container" id="accordion">
+		</div>
+		
         </div>
     </div>
 </div>
-
+<script src="./vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-	
 	//Ajax方式请求后台数据 
     function findall(){
 	    $.ajax({
@@ -303,7 +299,7 @@
 						var time = jsonObj.data[item].time;
 					    var upname = jsonObj.data[item].upname;
 					    var description = jsonObj.data[item].description;
-					   html+="<ul><li style='font-size: 19px'>"+id+"|"+noticename+"-----------"+time+"-----------"+upname+" <ul> <li style='font-size: 15px'>"+description+"  </li></ul></li></ul>";
+					   html+="<dl><dt>"+id+"---"+noticename+"</dt><dd><p>===="+upname+"=====----===="+time+"====</p><p>"+description+"</p></dd></dl>";
 				    }
 				        $("#accordion").html(html);
                },
@@ -313,10 +309,21 @@
           });
     }
 	window.onload=findall;
-		</script>
+	
+	(function(){
+
+		  $('dd').filter(':nth-child(n+4)').addClass('hide');
+
+		  $('dl').on('click', 'dt', function() {
+		      $(this).next().slideToggle(200);
+		    });
+		  
+		 })();
+	
+</script>
 
 
-<script src="./vendor/jquery/jquery.min.js"></script>
+
 <script src="./vendor/popper.js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="./vendor/chart.js/chart.min.js"></script>
