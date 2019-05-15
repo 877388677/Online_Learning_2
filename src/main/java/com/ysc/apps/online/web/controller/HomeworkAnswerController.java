@@ -87,5 +87,15 @@ public class HomeworkAnswerController {
 	  	
 	  }
 	 
+	 @GetMapping("deleteAnswerById")
+		public MsgResponse deleteAnswerById(long id){
+			try{
+				answerService.deleteById(id);
+				return MsgResponse.success("success", null);
+			}catch(Exception e){
+				e.printStackTrace();
+				return MsgResponse.error(e.getMessage());
+			}
+		}
 	 
 }
