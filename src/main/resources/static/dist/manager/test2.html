@@ -7,125 +7,61 @@
 
 </head>
 <body>
-
-<article class="cl pd-20">
-	<form action="http://localhost:8080/user/register" method="post" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="username" name="username">
+			<label class="form-label col-xs-4 col-sm-2">课程对应章节：</label>
+			<div id="courseSelect" class="formControls col-xs-8 col-sm-9">
+				课程下拉列表
+			</div>
+			<div id="chapterselect" class="formControls col-xs-8 col-sm-9">
+				章节下拉列表
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="123456" placeholder="" id="password" name="password">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
-			<div id="sexRadio" class="formControls col-xs-8 col-sm-9 skin-minimal">
-				<div class="radio-box">
-					<input name="sex" type="radio" id="sex-1" value="男" checked>
-					<label for="sex-1">男</label>
-				</div>
-				<div class="radio-box">
-					<input type="radio" id="sex-2" value="女" name="sex">
-					<label for="sex-2">女</label>
-				</div>
-				<div class="radio-box">
-					<input type="radio" id="sex-3" value="保密" name="sex">
-					<label for="sex-3">保密</label>
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>年龄：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="age" name="age">
-			</div>
-		</div>
-		
-		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">用户类型：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select id="myselect" class="select" size="1" name="city">
-					<option value="1" selected>学生</option>
-					<option value="2">教师</option>
-					<option value="3">管理员</option>
-				</select>
-				</span> 
-			</div>
-		</div>
-	</form>
-</article>
-		<button onClick="user_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+		<button onClick="getSelect();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+		<button onClick="tree();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 
 
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript">
-
-function getCookie(c_name){  
-	if (document.cookie.length>0){
-		c_start=document.cookie.indexOf(c_name + "=")
-	    if (c_start!=-1){ 
-	    	c_start=c_start + c_name.length+1 
-	    	c_end=document.cookie.indexOf(";",c_start)
-	   		if (c_end==-1) c_end=document.cookie.length
-	    	return unescape(document.cookie.substring(c_start,c_end))
-	    } 
-	} 
-	return ""
-}
-function notice_submit(){	
-	var id = getCookie("studentId");
-	console.log("id:"+id);
+window.onload = function(){findAllCourse();}
+function findAllCourse(){
 	
- 	var username = $("#username").val();
-	console.log("username:"+username); 
-	
-	var password = $("#password").val();
-	console.log("password:"+password);
-	
-	var gender = $('#sexRadio input[name="sex"]:checked').val(); 
-	console.log("gender:"+gender);
-	
-	var age = $("#age").val();
-	console.log("age:"+age);	
-	
-	var options=$("#myselect option:selected"); 
-	var type = options.val();
-	console.log("type:"+type);
-	
-	 $.ajax({
-		type:"post",
-		url:"http://localhost:8080/user/saveOrupdateUser",
-		data: {
-			"id":id,
-			"username": username,
-			"password": password,
-			"gender": gender,
-			"age": age,
-			"type": type
+	$.ajax({
+		type:"get",
+		url:"http://localhost:8080/course/findAllCourseVM",
+		data:{},
+		dataType:"json",
+		success:function(data){
+			console.log(data.message);
+			var jsonObj = data;
+			var html="<select  id='getcourseSelect'>";
+			for (var item in jsonObj.data){
+				var courseId = jsonObj.data[item].id;
+				var courseName = jsonObj.data[item].name;
+				html +=" <option value ="+courseId+">"+courseName+"</option>";
+			}
+			html+="</select>"  ;
+			$("#courseSelect").html(html);
 		},
-		dataType:'json',
-		success: function(data){
-			console.log("success:"+data);
-			var jsonObj=data;
-			console.log("msg:"+jsonObj.message);
-			alert("msg:"+jsonObj.message);
-		},
-		
-		error: function(data){
-			console.log("error:"+data);
-			alert("error");
+		error:function(data){
+			alert(data.message);
 		}
-		
 	});
-	layer_close() 
-} 
+	
+	
+}
+
+function getSelect(){
+	 var options=$("#getcourseSelect option:selected"); 
+	 console.log("options---"+options.text());
+	 var courseId=options.val();
+	 console.log("courseId"+courseId);
+	 return courseId;
+}
+
+function tree(){
+	var id = getSelect();
+	alert(id);
+}
 </script>
 </body>
 </html>
